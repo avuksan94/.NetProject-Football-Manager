@@ -1,0 +1,9 @@
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DAL\bin\Debug\DAL.dll
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DAL\bin\Debug\DAL.pdb
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DAL\obj\Debug\DAL.dll
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DAL\obj\Debug\DAL.pdb
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DAL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DAL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DAL\obj\Debug\DAL.csproj.CopyComplete
