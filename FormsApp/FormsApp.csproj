@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="en_local.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en_local.resx</DependentUpon>
+    </Compile>
+    <Compile Update="hrv_local.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>hrv_local.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="en_local.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_local.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>en-US</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="hrv_local.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>hrv_local.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>hr-HR</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
