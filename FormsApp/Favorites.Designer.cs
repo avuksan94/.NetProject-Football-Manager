@@ -77,6 +77,7 @@
             this.lboxRepFavorites.Size = new System.Drawing.Size(861, 484);
             this.lboxRepFavorites.TabIndex = 3;
             this.lboxRepFavorites.SelectedIndexChanged += new System.EventHandler(this.lboxRepFavorites_SelectedIndexChanged);
+            this.lboxRepFavorites.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.lboxRepFavorites_Format);
             // 
             // lbFavorites
             // 

@@ -64,6 +64,7 @@
     <Compile Include="Model\GroupResult.cs" />
     <Compile Include="Model\Match.cs" />
     <Compile Include="Model\OrderedTeam.cs" />
+    <Compile Include="Model\Player.cs" />
     <Compile Include="Model\StartingEleven.cs" />
     <Compile Include="Model\Team.cs" />
     <Compile Include="Model\TeamEvent.cs" />

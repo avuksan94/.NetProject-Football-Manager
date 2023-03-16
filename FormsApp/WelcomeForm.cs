@@ -8,6 +8,7 @@ using System.Net.NetworkInformation;
 using RepoStrategy.Model;
 using RepoStrategy.Repo;
 using RepoStrategy.Strategy.Factory;
+using DAL.Model;
 
 namespace FormsApp
 {
@@ -16,29 +17,45 @@ namespace FormsApp
         private ResourceManager resourceManager = new ResourceManager(typeof(WelcomeScreenForm));
         public bool apiAvailability = ServerStatusBy(API_PING);
 
-        SortedDictionary<string, SortedSet<string>> LoadPlayers(IList<Match> matches, IList<Match> matchesLocal)
+        SortedDictionary<string, SortedSet<Player>> LoadPlayers(IList<Match> matches, IList<Match> matchesLocal)
         {
-            SortedDictionary<string, SortedSet<string>> countryPlayers = new SortedDictionary<string, SortedSet<string>>();
+            SortedDictionary<string, SortedSet<Player>> countryPlayers = new SortedDictionary<string, SortedSet<Player>>();
             if (apiAvailability)
             {
                 foreach (var item in matches.ToList())
                 {
 
                     string countryName = item.HomeTeamStatistics.Country;
-                    SortedSet<string> players;
+                    SortedSet<Player> players;
                     if (!countryPlayers.TryGetValue(countryName, out players))
                     {
-                        players = new SortedSet<string>();
+                        players = new SortedSet<Player>();
                         countryPlayers.Add(countryName, players);
                     }
 
                     item.HomeTeamStatistics.StartingEleven
                         .ToList()
-                        .ForEach(c => players.Add(c.Name));
+                        .ForEach(
+                            c => players.Add(new Player 
+                            {
+                                Name = c.Name,
+                                Position = c.Position,
+                                ShirtNumber = c.ShirtNumber,
+                                Captain = c.Captain
+                            }
+                            )
+                        );
 
                     item.HomeTeamStatistics.Substitutes
                         .ToList()
-                        .ForEach(c => players.Add(c.Name));
+                        .ForEach(
+                             c => players.Add(new Player
+                             {
+                                 Name = c.Name,
+                                 Position = c.Position,
+                                 ShirtNumber = c.ShirtNumber,
+                                 Captain = c.Captain
+                             }));
                 }
                 return countryPlayers;
             }
@@ -48,25 +65,39 @@ namespace FormsApp
                 {
 
                     string countryName = item.HomeTeamStatistics.Country;
-                    SortedSet<string> players;
+                    SortedSet<Player> players;
                     if (!countryPlayers.TryGetValue(countryName, out players))
                     {
-                        players = new SortedSet<string>();
+                        players = new SortedSet<Player>();
                         countryPlayers.Add(countryName, players);
                     }
 
                     item.HomeTeamStatistics.StartingEleven
                         .ToList()
-                        .ForEach(c => players.Add(c.Name));
+                        .ForEach(
+                            c => players.Add(new Player
+                            {
+                                Name = c.Name,
+                                Position = c.Position,
+                                ShirtNumber = c.ShirtNumber,
+                                Captain = c.Captain
+                            }));
 
                     item.HomeTeamStatistics.Substitutes
                         .ToList()
-                        .ForEach(c => players.Add(c.Name));
+                        .ForEach(
+                            c => players.Add(new Player
+                            {
+                                Name = c.Name,
+                                Position = c.Position,
+                                ShirtNumber = c.ShirtNumber,
+                                Captain = c.Captain
+                            }));
 
                 }
                 return countryPlayers;
             }
-            return new SortedDictionary<string, SortedSet<string>>();
+            return new SortedDictionary<string, SortedSet<Player>>();
         }
 
         public string SelectedComboBoxValue
@@ -103,7 +134,7 @@ namespace FormsApp
             }
         }
 
-        public IDictionary<string, SortedSet<string>>  MenPlayers
+        public IDictionary<string, SortedSet<Player>>  MenPlayers
         {
             get 
             { 
@@ -111,7 +142,7 @@ namespace FormsApp
             }
         }
 
-        public IDictionary<string, SortedSet<string>> WomenPlayers
+        public IDictionary<string, SortedSet<Player>> WomenPlayers
         {
             get
             {

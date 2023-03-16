@@ -11,12 +11,17 @@ using System.Resources;
 using RepoStrategy.Model;
 using System.Diagnostics;
 using System.Configuration;
+using DAL.Model;
+using RepoStrategy.Enums;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace FormsApp
 {
     public partial class pnlRepPlayers : Form
     {
         private WelcomeScreenForm Wsf;
+        //private SortedSet<Player> allPlayers;
+
         public pnlRepPlayers(ResourceManager resourceManager,WelcomeScreenForm wsf)
         {
             InitializeComponent();
@@ -73,12 +78,12 @@ namespace FormsApp
         
             if (Wsf.SelectedComboBoxValue == "Male" || Wsf.SelectedComboBoxValue == "Muški")
             {
-                foreach (KeyValuePair<string, SortedSet<string>> pair in Wsf.MenPlayers)
+                foreach (KeyValuePair<string, SortedSet<Player>> pair in Wsf.MenPlayers)
                 {
         
                     if (pair.Key.Contains(selectedCountry))
                     {
-                        foreach (string player in pair.Value)
+                        foreach (Player player in pair.Value)
                         {
                             lboxRepAllPlayers.Items.Add(player);
                         }
@@ -87,18 +92,20 @@ namespace FormsApp
             }
             else if(Wsf.SelectedComboBoxValue == "Female" || Wsf.SelectedComboBoxValue == "Ženski")
             {
-                foreach (KeyValuePair<string, SortedSet<string>> pair in Wsf.WomenPlayers)
+                foreach (KeyValuePair<string, SortedSet<Player>> pair in Wsf.WomenPlayers)
                 {
         
                     if (pair.Key.Contains(selectedCountry))
                     {
-                        foreach (string player in pair.Value)
+                        foreach (Player player in pair.Value)
                         {
                             lboxRepAllPlayers.Items.Add(player);
+                            
                         }
                     }
                 }
             }
+           
         }
 
         private void Favorites_Load(object sender, EventArgs e)
@@ -108,28 +115,47 @@ namespace FormsApp
 
         private void CbChooseRep_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lboxRepAllPlayers.DisplayMember = "Name";
             lboxRepAllPlayers.Items.Clear();
             LoadPlayers();
         }
 
         private void lboxRepAllPlayers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedItem = lboxRepAllPlayers.SelectedItem.ToString();
-            if (!lboxRepFavorites.Items.Contains(selectedItem))
-            {
-                lboxRepFavorites.Items.Add(selectedItem);
-            }
-            else 
-            {
-                MessageBox.Show("Player is already in Favorites!!");
-            }
-            
+            Player selectedPlayer = lboxRepAllPlayers.SelectedItem as Player;
+          
+             if (!lboxRepFavorites.Items.Contains(selectedPlayer))
+             {
+                 lboxRepFavorites.Items.Add(selectedPlayer);
+             }
+             else
+             {
+                 MessageBox.Show("Player is already in Favorites!!");
+             }
         }
 
         private void lboxRepFavorites_SelectedIndexChanged(object sender, EventArgs e)
         {
             object selectedItem = lboxRepFavorites.SelectedItem;
             lboxRepFavorites.Items.Remove(selectedItem);
+        }
+
+        private void lboxRepFavorites_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string name = ((Player)e.ListItem).Name.ToString();
+            string shirtNum = ((Player)e.ListItem).ShirtNumber.ToString();
+            string position = ((Player)e.ListItem).Position.ToString();
+            string captain = ((Player)e.ListItem).Captain ? "Yes" : "No";
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(name + "    ");
+            sb.Append(shirtNum + "    ");
+            sb.Append(position + "    ");
+            sb.Append(captain + "    ");
+
+            string text = sb.ToString();
+
+            e.Value = text;
         }
     }
 }

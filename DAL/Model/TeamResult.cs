@@ -7,7 +7,7 @@ using System;
 
 namespace RepoStrategy.Model
 {
-    public class TeamResult
+    public class TeamResult : IComparable<TeamResult>
     {
 
         [JsonProperty("alternate_name")]
@@ -51,24 +51,29 @@ namespace RepoStrategy.Model
         [JsonProperty("wins")]
         public long Wins { get; set; }
 
+        public int CompareTo(TeamResult other) => Country.CompareTo(other.Country);
+        public override bool Equals(object obj) =>  obj is TeamResult result && Id == result.Id;
+        public override int GetHashCode() => 2108858624 + Id.GetHashCode();
+        
 
-        public override string ToString()
-        {
-            return $"ID: {Id},  " +
-                $"Country: {Country}, " +
-                $"AlternateName: {AlternateName}, " +
-                $"FifaCode: {FifaCode}, " +
-                $"GroupId: {GroupId}, " +
-                $"GroupLetter: {GroupLetter}, " +
-                $"Wins: {Wins}, " +
-                $"Draws: {Draws}, " +
-                $"Loses: {Losses}, " +
-                $"Games played: {GamesPlayed}, " +
-                $"Points: {Points}," +
-                $"GoalsFor: {GoalsFor}," +
-                $"GoalsAgainst: {GoalsAgainst}," +
-                $"GoalDiff:  {GoalDifferential}";
-        }
+
+        //public override string ToString()
+        //{
+        //    return $"ID: {Id},  " +
+        //        $"Country: {Country}, " +
+        //        $"AlternateName: {AlternateName}, " +
+        //        $"FifaCode: {FifaCode}, " +
+        //        $"GroupId: {GroupId}, " +
+        //        $"GroupLetter: {GroupLetter}, " +
+        //        $"Wins: {Wins}, " +
+        //        $"Draws: {Draws}, " +
+        //        $"Loses: {Losses}, " +
+        //        $"Games played: {GamesPlayed}, " +
+        //        $"Points: {Points}," +
+        //        $"GoalsFor: {GoalsFor}," +
+        //        $"GoalsAgainst: {GoalsAgainst}," +
+        //        $"GoalDiff:  {GoalDifferential}";
+        //}
 
     }
 }
