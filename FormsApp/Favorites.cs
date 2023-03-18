@@ -72,8 +72,8 @@ namespace FormsApp
         private void LoadPlayers() 
         {
             lboxRepAllPlayers.Refresh();
-            string selectedItem = cbChooseRep.SelectedItem.ToString();
-            string selectedCountry = selectedItem.Split(' ')[0];
+            string? selectedItem = cbChooseRep?.SelectedItem?.ToString();
+            string? selectedCountry = selectedItem?.Split(' ')[0];
 
         
             if (Wsf.SelectedComboBoxValue == "Male" || Wsf.SelectedComboBoxValue == "Muški")
@@ -122,7 +122,7 @@ namespace FormsApp
 
         private void lboxRepAllPlayers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Player selectedPlayer = lboxRepAllPlayers.SelectedItem as Player;
+            Player? selectedPlayer = lboxRepAllPlayers.SelectedItem as Player;
           
              if (!lboxRepFavorites.Items.Contains(selectedPlayer))
              {
@@ -142,7 +142,7 @@ namespace FormsApp
 
         private void lboxRepFavorites_Format(object sender, ListControlConvertEventArgs e)
         {
-            string name = ((Player)e.ListItem).Name.ToString();
+            string? name = ((Player)e.ListItem).Name.ToString();
             string shirtNum = ((Player)e.ListItem).ShirtNumber.ToString();
             string position = ((Player)e.ListItem).Position.ToString();
             string captain = ((Player)e.ListItem).Captain ? "Yes" : "No";

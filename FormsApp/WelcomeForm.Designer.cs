@@ -34,6 +34,7 @@
             this.cbChooseMF = new System.Windows.Forms.ComboBox();
             this.lbOwnerName = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
+            this.loadingDataBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // lbChooseYourLanguage
@@ -97,6 +98,7 @@
             // 
             this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNext.Enabled = false;
             this.btnNext.Location = new System.Drawing.Point(615, 469);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(191, 78);
@@ -105,11 +107,21 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
+            // loadingDataBar
+            // 
+            this.loadingDataBar.Location = new System.Drawing.Point(615, 421);
+            this.loadingDataBar.Name = "loadingDataBar";
+            this.loadingDataBar.Size = new System.Drawing.Size(191, 29);
+            this.loadingDataBar.TabIndex = 6;
+            this.loadingDataBar.Value = 100;
+            this.loadingDataBar.Visible = false;
+            // 
             // WelcomeScreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1409, 618);
+            this.Controls.Add(this.loadingDataBar);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.lbOwnerName);
             this.Controls.Add(this.cbChooseMF);
@@ -132,5 +144,6 @@
         private ComboBox cbChooseMF;
         private Label lbOwnerName;
         private Button btnNext;
+        private ProgressBar loadingDataBar;
     }
 }

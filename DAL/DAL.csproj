@@ -61,6 +61,7 @@
     <Compile Include="Enums\Tactics.cs" />
     <Compile Include="Enums\Time.cs" />
     <Compile Include="Enums\TypeOfEvent.cs" />
+    <Compile Include="Model\DataRetrievalManager.cs" />
     <Compile Include="Model\GroupResult.cs" />
     <Compile Include="Model\Match.cs" />
     <Compile Include="Model\OrderedTeam.cs" />

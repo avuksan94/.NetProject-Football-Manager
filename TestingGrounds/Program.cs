@@ -1,4 +1,5 @@
-﻿using RepoStrategy.Model;
+﻿using DAL.Model;
+using RepoStrategy.Model;
 using RepoStrategy.Repo;
 using RepoStrategy.Strategy.Factory;
 using System;
@@ -28,9 +29,14 @@ namespace Testing
 
         #endregion
 
+       
+       
+
 
         static async Task Main(string[] args)
         {
+            DataRetrievalManager manager = new DataRetrievalManager();
+            
             try
             {
                 string userChoice = "api";
@@ -40,83 +46,88 @@ namespace Testing
             
                 if (userChoice == "api")
                 {
+                    await manager.LoadDataForProcess();
+                    manager.MenResults.ForEach(c => Console.WriteLine(c.ToString()));
+                    manager.MenMatches.ForEach(c => Console.WriteLine(c.ToString()));
+
+                    manager.WomenResults.ForEach(c => Console.WriteLine(c.ToString()));
+                    manager.WomenMatches.ForEach(c => Console.WriteLine(c.ToString()));
                     //IDataRetStrat
                     //var dataRetrievalStrategyAPI1 = factory.CreateApiDataRetrievalStrategy<TeamResult>(TEAMS_RESULTS_M);
                     //var dataRetrievalStrategyAPI2 = factory.CreateApiDataRetrievalStrategy<TeamResult>(TEAMS_RESULTS_W);
                     //var dataRetrievalStrategyAPI3 = factory.CreateApiDataRetrievalStrategy<Match>(TEAMS_MATCHES_M);
-                    var dataRetrievalStrategyAPI4 = factory.CreateApiDataRetrievalStrategy<Match>(TEAMS_MATCHES_M);
-            
-            
+                    //var dataRetrievalStrategyAPI4 = factory.CreateApiDataRetrievalStrategy<Match>(TEAMS_MATCHES_M);
+
+
                     // IRepo<T>
-                   //var repo1 = new DataRepo<TeamResult>(dataRetrievalStrategyAPI1);
-                   //var repo2 = new DataRepo<TeamResult>(dataRetrievalStrategyAPI2);
-                   //var repo3 = new DataRepo<Match>(dataRetrievalStrategyAPI3);
-                    var repo4 = new DataRepo<Match>(dataRetrievalStrategyAPI4);
-            
+                    //var repo1 = new DataRepo<TeamResult>(dataRetrievalStrategyAPI1);
+                    //var repo2 = new DataRepo<TeamResult>(dataRetrievalStrategyAPI2);
+                    //var repo3 = new DataRepo<Match>(dataRetrievalStrategyAPI3);
+                    //var repo4 = new DataRepo<Match>(dataRetrievalStrategyAPI4);
+
                     //Data su IEnumerables<T>
-                   //var data1 = await repo1.GetAllAsync();
-                   //var data2 = await repo2.GetAllAsync();
-                   //var data3 = await repo3.GetAllAsync();
-                    var data4 = await repo4.GetAllAsync();
+                    //var data1 = await repo1.GetAllAsync();
+                    //var data2 = await repo2.GetAllAsync();
+                    //var data3 = await repo3.GetAllAsync();
+                    //var data4 = await repo4.GetAllAsync();
 
                     //Print
                     //data1.ToList().ForEach(Console.WriteLine);
                     //data2.ToList().ForEach(Console.WriteLine);
                     //data3.ToList().ForEach(Console.WriteLine);
 
-                    SortedDictionary<string, SortedSet<string>> FavoritePlayers = new SortedDictionary<string, SortedSet<string>>();
-
-                    foreach (var item in data4.ToList())
-                    {
-
-                        string countryName = item.HomeTeamStatistics.Country;
-                        SortedSet<string> players;
-                        if (!FavoritePlayers.TryGetValue(countryName, out players))
-                        {
-                            players = new SortedSet<string>();
-                            FavoritePlayers.Add(countryName, players);
-                        }
-
-                        item.HomeTeamStatistics.StartingEleven
-                            .ToList()
-                            .ForEach(c => 
-                            { 
-                                players.Add(
-                                            c.Name + " "
-                                          + c.ShirtNumber.ToString() + " "
-                                          + c.Position.ToString() + " "
-                                          + (c.Captain ? "Yes" : "No")
-                                          );
-                            });
-
-                        item.HomeTeamStatistics.Substitutes
-                            .ToList()
-                            .ForEach(c =>
-                            {
-                                players.Add(
-                                           c.Name + " "
-                                         + c.ShirtNumber.ToString() + " "
-                                         + c.Position.ToString() + " "
-                                         + (c.Captain ? "Yes" : "No")
-                                         );
-                            });
-
-                    }
-
-                    string selectedCountry = "";
-                    foreach (var item in FavoritePlayers)
-                    {
-                        Console.WriteLine("Key " + item.Key);
-                            foreach (string data in item.Value.ToList())
-                            {
-                                Console.WriteLine("Value + " + data);
-                            }
-                        Console.WriteLine("*********************");
-                    }
-
-                    Console.WriteLine(countryPlayers.Count());
-
-
+                    //SortedDictionary<string, SortedSet<string>> FavoritePlayers = new SortedDictionary<string, SortedSet<string>>();
+                    //
+                    //foreach (var item in data4.ToList())
+                    //{
+                    //
+                    //    string countryName = item.HomeTeamStatistics.Country;
+                    //    SortedSet<string> players;
+                    //    if (!FavoritePlayers.TryGetValue(countryName, out players))
+                    //    {
+                    //        players = new SortedSet<string>();
+                    //        FavoritePlayers.Add(countryName, players);
+                    //    }
+                    //
+                    //    item.HomeTeamStatistics.StartingEleven
+                    //        .ToList()
+                    //        .ForEach(c => 
+                    //        { 
+                    //            players.Add(
+                    //                        c.Name + " "
+                    //                      + c.ShirtNumber.ToString() + " "
+                    //                      + c.Position.ToString() + " "
+                    //                      + (c.Captain ? "Yes" : "No")
+                    //                      );
+                    //        });
+                    //
+                    //    item.HomeTeamStatistics.Substitutes
+                    //        .ToList()
+                    //        .ForEach(c =>
+                    //        {
+                    //            players.Add(
+                    //                       c.Name + " "
+                    //                     + c.ShirtNumber.ToString() + " "
+                    //                     + c.Position.ToString() + " "
+                    //                     + (c.Captain ? "Yes" : "No")
+                    //                     );
+                    //        });
+                    //
+                    //}
+                    //
+                    //string selectedCountry = "";
+                    //foreach (var item in FavoritePlayers)
+                    //{
+                    //    Console.WriteLine("Key " + item.Key);
+                    //        foreach (string data in item.Value.ToList())
+                    //        {
+                    //            Console.WriteLine("Value + " + data);
+                    //        }
+                    //    Console.WriteLine("*********************");
+                    //}
+                    //
+                    //
+                    //
                 }
                 else
                 {
