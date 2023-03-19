@@ -100,6 +100,7 @@
             this.Controls.Add(this.cbChooseRep);
             this.Name = "pnlRepPlayers";
             this.Text = "Favorites";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.pnlRepPlayers_FormClosing);
             this.Load += new System.EventHandler(this.Favorites_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

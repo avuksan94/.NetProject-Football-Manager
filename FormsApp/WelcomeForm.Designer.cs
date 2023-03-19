@@ -35,6 +35,7 @@
             this.lbOwnerName = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
             this.loadingDataBar = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // lbChooseYourLanguage
@@ -130,6 +131,7 @@
             this.Controls.Add(this.lbChooseYourLanguage);
             this.Name = "WelcomeScreenForm";
             this.Text = "Welcome to the Football Manager app!";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WelcomeScreenForm_FormClosing);
             this.Load += new System.EventHandler(this.WelcomeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -145,5 +147,6 @@
         private Label lbOwnerName;
         private Button btnNext;
         private ProgressBar loadingDataBar;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

@@ -10,6 +10,7 @@ namespace DAL.Model
 {
     public class Player : IComparable<Player>
     {
+        public const char DELIMITER = '|';
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
 
@@ -34,5 +35,10 @@ namespace DAL.Model
         {
             return 539060726 + EqualityComparer<string>.Default.GetHashCode(Name);
         }
+
+        public override string ToString() => $"{Name}{DELIMITER.ToString()}" +
+                                             $"{ShirtNumber}{DELIMITER.ToString()}" +
+                                             $"{Position.ToString()}{DELIMITER.ToString()}" +
+                                             $"{Captain}";
     }
 }

@@ -9,6 +9,7 @@ using RepoStrategy.Model;
 using RepoStrategy.Repo;
 using RepoStrategy.Strategy.Factory;
 using DAL.Model;
+using System.CodeDom.Compiler;
 
 namespace FormsApp
 {
@@ -16,6 +17,8 @@ namespace FormsApp
     {
         private ResourceManager resourceManager = new ResourceManager(typeof(WelcomeScreenForm));
         public DataRetrievalManager dataManager = new DataRetrievalManager();
+        public Dictionary<string, Control> controlsWsf = new Dictionary<string, Control>();
+        public Dictionary<string, Control> controlsWsfFromFile = new Dictionary<string, Control>();
 
         //ovo mi je za simuliranje loadanja
         public async Task LoadDataSimulator(IProgress<int> progress)
@@ -27,46 +30,20 @@ namespace FormsApp
             }
         }
 
-        SortedDictionary<string, SortedSet<Player>> LoadPlayers(IList<Match> matches)
+        public Dictionary<string, Control> ControlsWsf
         {
-            
-            SortedDictionary<string, SortedSet<Player>>? countryPlayers = new SortedDictionary<string, SortedSet<Player>>();
-                foreach (var item in matches.ToList())
-                {
+            get
+            {
+                return controlsWsf;
+            }
+        }
 
-                    string countryName = item.HomeTeamStatistics.Country;
-                    SortedSet<Player> players;
-                    if (!countryPlayers.TryGetValue(countryName, out players))
-                    {
-                        players = new SortedSet<Player>();
-                        countryPlayers.Add(countryName, players);
-                    }
-
-                    item.HomeTeamStatistics.StartingEleven
-                        .ToList()
-                        .ForEach(
-                            c => players.Add(new Player 
-                            {
-                                Name = c.Name,
-                                Position = c.Position,
-                                ShirtNumber = c.ShirtNumber,
-                                Captain = c.Captain
-                            }
-                            )
-                        );
-
-                    item.HomeTeamStatistics.Substitutes
-                        .ToList()
-                        .ForEach(
-                             c => players.Add(new Player
-                             {
-                                 Name = c.Name,
-                                 Position = c.Position,
-                                 ShirtNumber = c.ShirtNumber,
-                                 Captain = c.Captain
-                             }));
-                }
-                return countryPlayers;
+        public Dictionary<string, Control> ControlsWsfFromFile
+        {
+            get
+            {
+                return controlsWsf;
+            }
         }
 
         public string? SelectedComboBoxValue
@@ -97,7 +74,7 @@ namespace FormsApp
         {
             get 
             { 
-                return LoadPlayers(dataManager.MenMatches);
+                return dataManager.LoadPlayers(dataManager.MenMatches);
             }
         }
 
@@ -105,7 +82,7 @@ namespace FormsApp
         {
             get
             {
-                return LoadPlayers(dataManager.WomenMatches);
+                return dataManager.LoadPlayers(dataManager.WomenMatches);
             }
 
 
@@ -115,10 +92,9 @@ namespace FormsApp
         {
             InitializeComponent();
             
-            
         }
 
-        private void WelcomeForm_Load(object sender, EventArgs e)
+        private async void WelcomeForm_Load(object sender, EventArgs e)
         {
             this.CenterToScreen();
         }
@@ -167,7 +143,9 @@ namespace FormsApp
                 await LoadDataSimulator(progress); //simuliram progress,treba mu preko API da slozi oko 1-2 sek
 
                 //sakrij moj loading bar
-                loadingDataBar.Visible = false;
+                //The Invoke method queues the specified delegate to be executed on
+                //the thread that owns the control's underlying window handle
+                Invoke((MethodInvoker)delegate { loadingDataBar.Visible = false; });
             });
             //IMPORTANT
             btnNext.Enabled = true;
@@ -179,7 +157,11 @@ namespace FormsApp
                 favoritesForm.Show();
         }
 
-
-
+        private async void WelcomeScreenForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            controlsWsf.Add("ChooseLanguage", cbChooseLanguage);
+            controlsWsf.Add("ChooseMaleFemale", cbChooseMF);
+            await dataManager.SaveLocal(controlsWsf);
+        }
     }
 }

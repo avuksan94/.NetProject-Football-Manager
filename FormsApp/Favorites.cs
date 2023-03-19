@@ -35,6 +35,8 @@ namespace FormsApp
             womenSortedList.Sort();
 
             LoadTeamResults(menSortedList, womenSortedList);
+
+
         }
 
         private void LoadTeamResults(List<TeamResult> menSortedList, List<TeamResult> womenSortedList)
@@ -111,9 +113,10 @@ namespace FormsApp
         private void Favorites_Load(object sender, EventArgs e)
         {
             this.CenterToParent();
+            
         }
 
-        private void CbChooseRep_SelectedIndexChanged(object sender, EventArgs e)
+        private async void CbChooseRep_SelectedIndexChanged(object sender, EventArgs e)
         {
             lboxRepAllPlayers.DisplayMember = "Name";
             lboxRepAllPlayers.Items.Clear();
@@ -156,6 +159,21 @@ namespace FormsApp
             string text = sb.ToString();
 
             e.Value = text;
+        }
+
+        private async void pnlRepPlayers_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            await SaveControlsAsync();
+            e.Cancel = false;
+        }
+
+        private async Task SaveControlsAsync()
+        {
+            Wsf.controlsWsf.Add("ChooseRepresentation", cbChooseRep);
+            Wsf.controlsWsf.Add("AllPlayers", lboxRepAllPlayers);
+            Wsf.controlsWsf.Add("FavoritePlayers", lboxRepFavorites);
+            
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DAL.Model
 {
@@ -19,12 +20,16 @@ namespace DAL.Model
         private readonly IDataRetrievalStrategyFactory factory;
         public DataRetrievalManager() => factory = new DataRetrievalStrategyFactory();
 
+        //SAVE Lokalnih fajlova
+    
+        public const string COMBO_BOXES = @"ComboBoxChoices.txt";
+        public const string LIST_BOXES = @"ListBoxItems.txt";
+
         public const string API_PING = "worldcup-vua.nullbit.hr";
         public const string TEAMS_RESULTS_M = "https://worldcup-vua.nullbit.hr/men/teams/results";
         public const string TEAMS_RESULTS_W = "https://worldcup-vua.nullbit.hr/women/teams/results";
         public const string TEAMS_MATCHES_M = "https://worldcup-vua.nullbit.hr/men/matches";
         public const string TEAMS_MATCHES_W = "https://worldcup-vua.nullbit.hr/women/matches";
-
 
         public List<TeamResult> MenResults { get; private set; }
         public List<TeamLocal> MenTeamLocal { get; private set; }
@@ -65,7 +70,6 @@ namespace DAL.Model
 
         public async Task LoadDataForProcess() 
         {
-            
             if (!ServerStatusBy(API_PING))
             {
                 string pathToMenResults = pathToMenFolder + "\\results.json";
@@ -152,6 +156,119 @@ namespace DAL.Model
                 WomenResults = data1.ToList();
                 WomenMatches = data2.ToList();
             }
+        }
+
+        public async Task SaveLocal(Dictionary<string, Control> controlDict)
+        {
+            string cbPath = Path.Combine(Application.StartupPath, COMBO_BOXES);
+            string lbPath = Path.Combine(Application.StartupPath, LIST_BOXES);
+
+            if (!File.Exists(cbPath))
+            {
+                File.Create(cbPath);
+            }
+            if (!File.Exists(lbPath))
+            {
+                File.Create(lbPath);
+            }
+
+            StreamWriter comboBoxWriter = new StreamWriter(cbPath);
+            StreamWriter listBoxWriter = new StreamWriter(lbPath);
+
+            foreach (KeyValuePair<string, Control> kvp in controlDict)
+            {
+                if (kvp.Value is ComboBox)
+                {
+                    ComboBox comboBox = (ComboBox)kvp.Value;
+                    await comboBoxWriter.WriteAsync($"{kvp.Key}|{comboBox.SelectedIndex.ToString()}{Environment.NewLine}");
+                }
+                else if (kvp.Value is ListBox)
+                {
+                    ListBox listBox = (ListBox)kvp.Value;
+                    foreach (var item in listBox.Items)
+                    {
+                        await listBoxWriter.WriteAsync($"{kvp.Key}|{item.ToString()}{Environment.NewLine}");
+                    }
+                }
+            }
+
+            await comboBoxWriter.FlushAsync();
+            await listBoxWriter.FlushAsync();
+
+            comboBoxWriter.Close();
+            listBoxWriter.Close();
+        }
+
+        //Separitati sve za loadanje pojedinih elemenata u zasebne klase koje primaju 
+        //Controle kao parametar i onda se implemetira sve u LoadLocal
+
+        //public async Task LoadLocal()
+        //{
+        //    string cbPath = Path.Combine(Application.StartupPath, COMBO_BOXES);
+        //    string lbPath = Path.Combine(Application.StartupPath, LIST_BOXES);
+        //
+        //    if (!File.Exists(cbPath))
+        //    {
+        //        File.Create(cbPath);
+        //    }
+        //    if (!File.Exists(lbPath))
+        //    {
+        //        File.Create(lbPath);
+        //    }
+        //
+        //    StreamReader comboBoxWriter = new StreamReader(cbPath);
+        //    StreamReader listBoxWriter = new StreamReader(lbPath);
+        //
+        //
+        //    comboBoxWriter.Close();
+        //    listBoxWriter.Close();
+        //}
+
+        
+
+        public SortedDictionary<string, SortedSet<Player>> LoadPlayers(IList<Match> matches)
+        {
+
+            SortedDictionary<string, SortedSet<Player>> countryPlayers = new SortedDictionary<string, SortedSet<Player>>();
+            
+              foreach (var item in matches.ToList())
+              {
+
+                  string countryName = item.HomeTeamStatistics.Country;
+                  SortedSet<Player> players;
+                  if (!countryPlayers.TryGetValue(countryName, out players))
+                  {
+                      players = new SortedSet<Player>();
+                      countryPlayers.Add(countryName, players);
+                  }
+
+                  item.HomeTeamStatistics.StartingEleven
+                      .ToList()
+                      .ForEach(
+                          c => players.Add(new Player
+                          {
+                              Name = c.Name,
+                              Position = c.Position,
+                              ShirtNumber = c.ShirtNumber,
+                              Captain = c.Captain
+                          }
+                          )
+                      );
+
+                  item.HomeTeamStatistics.Substitutes
+                      .ToList()
+                      .ForEach(
+                           c => players.Add(new Player
+                           {
+                               Name = c.Name,
+                               Position = c.Position,
+                               ShirtNumber = c.ShirtNumber,
+                               Captain = c.Captain
+                           }));
+              }
+              
+          
+            return countryPlayers;
         }
     }
 }

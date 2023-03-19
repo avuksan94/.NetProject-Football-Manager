@@ -35,14 +35,10 @@ namespace RepoStrategy.Repo
             throw new NotImplementedException();
         }
 
-        public void Delete(T entity)
+        public void Save(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
