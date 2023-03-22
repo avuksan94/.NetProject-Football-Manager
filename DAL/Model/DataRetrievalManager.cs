@@ -1,4 +1,5 @@
-﻿using RepoStrategy.Model;
+﻿using RepoStrategy.Enums;
+using RepoStrategy.Model;
 using RepoStrategy.Repo;
 using RepoStrategy.Strategy.Factory;
 using System;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,12 +27,16 @@ namespace DAL.Model
         public const string COMBO_BOXES = @"ComboBoxChoices.txt";
         public const string LIST_BOXES = @"ListBoxItems.txt";
 
+        public const string COMBO_BOXES_FAVORITES = @"ComboBoxChoicesFavorites.txt";
+        public const string LIST_BOXES_FAVORITES = @"ListBoxItemsFavorites.txt";
+
         public const string API_PING = "worldcup-vua.nullbit.hr";
         public const string TEAMS_RESULTS_M = "https://worldcup-vua.nullbit.hr/men/teams/results";
         public const string TEAMS_RESULTS_W = "https://worldcup-vua.nullbit.hr/women/teams/results";
         public const string TEAMS_MATCHES_M = "https://worldcup-vua.nullbit.hr/men/matches";
         public const string TEAMS_MATCHES_W = "https://worldcup-vua.nullbit.hr/women/matches";
 
+        public const char DELIMITER = '|';
         public List<TeamResult> MenResults { get; private set; }
         public List<TeamLocal> MenTeamLocal { get; private set; }
         public List<Match> MenMatches { get; private set; }
@@ -191,7 +197,55 @@ namespace DAL.Model
                     }
                 }
             }
+            await comboBoxWriter.FlushAsync();
+            await listBoxWriter.FlushAsync();
 
+            comboBoxWriter.Close();
+            listBoxWriter.Close();
+        }
+
+        public async Task SaveLocalFavorites(Dictionary<string, Control> controlDict)
+        {
+            string cbPath = Path.Combine(Application.StartupPath, COMBO_BOXES_FAVORITES);
+            string lbPath = Path.Combine(Application.StartupPath, LIST_BOXES_FAVORITES);
+
+            if (!File.Exists(cbPath))
+            {
+                File.Create(cbPath);
+            }
+            else if(File.Exists(cbPath))
+            {
+                File.WriteAllText(cbPath, string.Empty);
+            }
+
+            if (!File.Exists(lbPath))
+            {
+                File.Create(lbPath);
+            }
+            else if (File.Exists(lbPath))
+            {
+                File.WriteAllText(lbPath, string.Empty);
+            }
+
+            StreamWriter comboBoxWriter = new StreamWriter(cbPath);
+            StreamWriter listBoxWriter = new StreamWriter(lbPath);
+
+            foreach (KeyValuePair<string, Control> kvp in controlDict)
+            {
+                if (kvp.Value is ComboBox)
+                {
+                    ComboBox comboBox = (ComboBox)kvp.Value;
+                    await comboBoxWriter.WriteAsync($"{kvp.Key}|{comboBox.SelectedIndex.ToString()}{Environment.NewLine}");
+                }
+                else if (kvp.Value is ListBox)
+                {
+                    ListBox listBox = (ListBox)kvp.Value;
+                    foreach (var item in listBox.Items)
+                    {
+                        await listBoxWriter.WriteAsync($"{kvp.Key}|{item.ToString()}{Environment.NewLine}");
+                    }
+                }
+            }
             await comboBoxWriter.FlushAsync();
             await listBoxWriter.FlushAsync();
 
@@ -202,29 +256,149 @@ namespace DAL.Model
         //Separitati sve za loadanje pojedinih elemenata u zasebne klase koje primaju 
         //Controle kao parametar i onda se implemetira sve u LoadLocal
 
-        //public async Task LoadLocal()
-        //{
-        //    string cbPath = Path.Combine(Application.StartupPath, COMBO_BOXES);
-        //    string lbPath = Path.Combine(Application.StartupPath, LIST_BOXES);
-        //
-        //    if (!File.Exists(cbPath))
-        //    {
-        //        File.Create(cbPath);
-        //    }
-        //    if (!File.Exists(lbPath))
-        //    {
-        //        File.Create(lbPath);
-        //    }
-        //
-        //    StreamReader comboBoxWriter = new StreamReader(cbPath);
-        //    StreamReader listBoxWriter = new StreamReader(lbPath);
-        //
-        //
-        //    comboBoxWriter.Close();
-        //    listBoxWriter.Close();
-        //}
+        public void LoadLocal(Dictionary<string, Control> controlDict)
+        {
+            string cbPath = Path.Combine(Application.StartupPath, COMBO_BOXES);
+            string lbPath = Path.Combine(Application.StartupPath, LIST_BOXES);
 
-        
+            if (!File.Exists(cbPath))
+            {
+                File.Create(cbPath);
+            }
+            if (!File.Exists(lbPath))
+            {
+                File.Create(lbPath);
+            }
+
+            using (StreamReader comboBoxReader = new StreamReader(cbPath))
+            {
+                string line;
+                while ((line = comboBoxReader.ReadLine()) != null)
+                {
+                    string[] data = line.Split(DELIMITER);
+                    //MessageBox.Show(data[1]);
+                    foreach (KeyValuePair<string, Control> kvp in controlDict)
+                    {
+                        if (kvp.Value is ComboBox)
+                        {
+                            if (kvp.Value.Name == data[0])
+                            {
+                                int selectedInd = int.Parse(data[1]);
+                                ComboBox comboBox = (ComboBox)kvp.Value;
+                                comboBox.SelectedIndex = selectedInd;
+                            }
+                        }
+                    }
+                }
+                comboBoxReader.Close();
+            }
+
+            using (StreamReader listBoxReader = new StreamReader(lbPath))
+            {
+                string line;
+                while ((line = listBoxReader.ReadLine()) != null)
+                {
+                    string[] data = line.Split(DELIMITER);
+                    foreach (KeyValuePair<string, Control> kvp in controlDict)
+                    {
+                        if (kvp.Value is ListBox)
+                        {
+                            if (kvp.Value.Name == data[0])
+                            {
+                                StringBuilder sb = new StringBuilder();
+                                sb.Append(data[1]);
+                                sb.Append(" ");
+                                sb.Append(data[2]);
+                                sb.Append(" ");
+                                sb.Append(data[3]);
+                                sb.Append(" ");
+                                sb.Append(data[4]);
+                                string text = sb.ToString();
+                                ListBox listBox = (ListBox)kvp.Value;
+                                listBox.Items.Add(text);
+
+                            }
+                        }
+                    }
+                }
+                listBoxReader.Close();
+            }
+        }
+
+        public void LoadLocalFavorites(Dictionary<string, Control> controlDict)
+        {
+            string cbPath = Path.Combine(Application.StartupPath, COMBO_BOXES_FAVORITES);
+            string lbPath = Path.Combine(Application.StartupPath, LIST_BOXES_FAVORITES);
+
+            if (!File.Exists(cbPath))
+            {
+                File.Create(cbPath);
+            }
+            if (!File.Exists(lbPath))
+            {
+                File.Create(lbPath);
+            }
+            else if (File.Exists(lbPath))
+            {
+                using (StreamReader listBoxReader = new StreamReader(lbPath))
+                {
+                    string line;
+                    while ((line = listBoxReader.ReadLine()) != null)
+                    {
+                        string[] data = line.Split(DELIMITER);
+                        foreach (KeyValuePair<string, Control> kvp in controlDict)
+                        {
+                            if (kvp.Value is ListBox)
+                            {
+                                if (kvp.Value.Name == data[0])
+                                {
+                                    Player p = new Player()
+                                    {
+                                        Name = data[1],
+                                        ShirtNumber = int.Parse(data[2]),
+                                        Position = (Position)Enum.Parse(typeof(Position), data[3]),
+                                        Captain = bool.Parse(data[4])
+
+                                    };
+                                    ListBox listBox = (ListBox)kvp.Value;
+                                    listBox.Items.Add(p);
+                                    break;
+
+                                }
+                            }
+                        }
+                    }
+                    listBoxReader.Close();
+                }
+            }
+
+            using (StreamReader comboBoxReader = new StreamReader(cbPath))
+            {
+                string line;
+                while ((line = comboBoxReader.ReadLine()) != null)
+                {
+                    string[] data = line.Split(DELIMITER);
+                    //MessageBox.Show(data[1]);
+                    foreach (KeyValuePair<string, Control> kvp in controlDict)
+                    {
+                        if (kvp.Value is ComboBox)
+                        {
+                            if (kvp.Value.Name == data[0])
+                            {
+                                int selectedInd = int.Parse(data[1]);
+                                ComboBox comboBox = (ComboBox)kvp.Value;
+                                comboBox.SelectedIndex = selectedInd;
+                            }
+                        }
+                    }
+                }
+                comboBoxReader.Close();
+            }
+
+           
+        }
+
+
 
         public SortedDictionary<string, SortedSet<Player>> LoadPlayers(IList<Match> matches)
         {

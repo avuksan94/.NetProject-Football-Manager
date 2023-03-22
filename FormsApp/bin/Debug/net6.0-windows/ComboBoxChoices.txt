@@ -1,3 +1,2 @@
-ChooseRepresentation|7
-ChooseLanguage|0
-ChooseMaleFemale|0
+cbChooseLanguage|1
+cbChooseMF|1

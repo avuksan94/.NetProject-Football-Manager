@@ -19,7 +19,8 @@ namespace FormsApp
 {
     public partial class pnlRepPlayers : Form
     {
-        private WelcomeScreenForm Wsf;
+        private  WelcomeScreenForm Wsf;
+        public Dictionary<string, Control> controlsFavorites = new Dictionary<string, Control>();
         //private SortedSet<Player> allPlayers;
 
         public pnlRepPlayers(ResourceManager resourceManager,WelcomeScreenForm wsf)
@@ -29,13 +30,13 @@ namespace FormsApp
             cbChooseRep.Text = resourceManager.GetString("cbChooseRep");
             this.Wsf= wsf;
 
+            LoadControls();
+
             List<TeamResult> menSortedList = Wsf.MenRes.ToList();
             menSortedList.Sort();
             List<TeamResult> womenSortedList = Wsf.WomenRes.ToList();
             womenSortedList.Sort();
-
             LoadTeamResults(menSortedList, womenSortedList);
-
 
         }
 
@@ -113,14 +114,15 @@ namespace FormsApp
         private void Favorites_Load(object sender, EventArgs e)
         {
             this.CenterToParent();
-            
+            Wsf.dataManager.LoadLocalFavorites(controlsFavorites);
         }
 
-        private async void CbChooseRep_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbChooseRep_SelectedIndexChanged(object sender, EventArgs e)
         {
             lboxRepAllPlayers.DisplayMember = "Name";
             lboxRepAllPlayers.Items.Clear();
             LoadPlayers();
+
         }
 
         private void lboxRepAllPlayers_SelectedIndexChanged(object sender, EventArgs e)
@@ -154,7 +156,7 @@ namespace FormsApp
             sb.Append(name + "    ");
             sb.Append(shirtNum + "    ");
             sb.Append(position + "    ");
-            sb.Append(captain + "    ");
+            sb.Append(captain);
 
             string text = sb.ToString();
 
@@ -163,17 +165,23 @@ namespace FormsApp
 
         private async void pnlRepPlayers_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            await SaveControlsAsync();
-            e.Cancel = false;
+            await Wsf.dataManager.SaveLocalFavorites(controlsFavorites);
         }
 
-        private async Task SaveControlsAsync()
+        private void LoadControls()
         {
-            Wsf.controlsWsf.Add("ChooseRepresentation", cbChooseRep);
-            Wsf.controlsWsf.Add("AllPlayers", lboxRepAllPlayers);
-            Wsf.controlsWsf.Add("FavoritePlayers", lboxRepFavorites);
-            
+            if (!controlsFavorites.ContainsKey("cbChooseRep"))
+            {
+                controlsFavorites.Add("cbChooseRep", cbChooseRep);
+            }
+            if (!controlsFavorites.ContainsKey("lboxRepAllPlayers"))
+            {
+                controlsFavorites.Add("lboxRepAllPlayers", lboxRepAllPlayers);
+            }
+            if (!controlsFavorites.ContainsKey("lboxRepFavorites"))
+            {
+                controlsFavorites.Add("lboxRepFavorites", lboxRepFavorites);
+            }
         }
     }
 }

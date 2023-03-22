@@ -18,7 +18,6 @@ namespace FormsApp
         private ResourceManager resourceManager = new ResourceManager(typeof(WelcomeScreenForm));
         public DataRetrievalManager dataManager = new DataRetrievalManager();
         public Dictionary<string, Control> controlsWsf = new Dictionary<string, Control>();
-        public Dictionary<string, Control> controlsWsfFromFile = new Dictionary<string, Control>();
 
         //ovo mi je za simuliranje loadanja
         public async Task LoadDataSimulator(IProgress<int> progress)
@@ -91,12 +90,14 @@ namespace FormsApp
         public WelcomeScreenForm()
         {
             InitializeComponent();
-            
+            controlsWsf.Add("cbChooseLanguage", cbChooseLanguage);
+            controlsWsf.Add("cbChooseMF", cbChooseMF);
         }
 
-        private async void WelcomeForm_Load(object sender, EventArgs e)
+        private void WelcomeForm_Load(object sender, EventArgs e)
         {
             this.CenterToScreen();
+            dataManager.LoadLocal(controlsWsf);
         }
 
         private void cbChooseLanguage_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,19 +149,18 @@ namespace FormsApp
                 Invoke((MethodInvoker)delegate { loadingDataBar.Visible = false; });
             });
             //IMPORTANT
+            await dataManager.SaveLocal(controlsWsf);
             btnNext.Enabled = true;
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-                pnlRepPlayers favoritesForm = new pnlRepPlayers(resourceManager, this);
-                favoritesForm.Show();
+            pnlRepPlayers favoritesForm = new pnlRepPlayers(resourceManager, this);
+            favoritesForm.Show();
         }
 
         private async void WelcomeScreenForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlsWsf.Add("ChooseLanguage", cbChooseLanguage);
-            controlsWsf.Add("ChooseMaleFemale", cbChooseMF);
             await dataManager.SaveLocal(controlsWsf);
         }
     }
