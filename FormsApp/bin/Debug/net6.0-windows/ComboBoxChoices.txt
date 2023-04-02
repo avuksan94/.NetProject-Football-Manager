@@ -1,2 +1,2 @@
-cbChooseLanguage|1
-cbChooseMF|1
+cbChooseLanguage|0
+cbChooseMF|0

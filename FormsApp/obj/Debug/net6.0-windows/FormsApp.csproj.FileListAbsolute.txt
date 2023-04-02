@@ -23,3 +23,10 @@ C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\FormsApp\bin\Debug\net6.0-
 C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\FormsApp\bin\Debug\net6.0-windows\Newtonsoft.Json.xml
 C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\FormsApp\obj\Debug\net6.0-windows\FormsApp.csproj.CopyComplete
 C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\FormsApp\obj\Debug\net6.0-windows\FormsApp.pnlRepPlayers.resources
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\FormsApp\obj\Debug\net6.0-windows\FormsApp.Rankings.resources
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\FormsApp\bin\Debug\net6.0-windows\Microsoft.Win32.SystemEvents.dll
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\FormsApp\bin\Debug\net6.0-windows\System.Drawing.Common.dll
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\FormsApp\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\FormsApp\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\FormsApp\bin\Debug\net6.0-windows\MyHelper.dll
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\FormsApp\bin\Debug\net6.0-windows\MyHelper.pdb

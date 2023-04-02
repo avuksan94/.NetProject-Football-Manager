@@ -4,11 +4,15 @@ using RepoStrategy.Repo;
 using RepoStrategy.Strategy.Factory;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,12 +27,18 @@ namespace DAL.Model
         public DataRetrievalManager() => factory = new DataRetrievalStrategyFactory();
 
         //SAVE Lokalnih fajlova
-    
+
         public const string COMBO_BOXES = @"ComboBoxChoices.txt";
         public const string LIST_BOXES = @"ListBoxItems.txt";
 
-        public const string COMBO_BOXES_FAVORITES = @"ComboBoxChoicesFavorites.txt";
-        public const string LIST_BOXES_FAVORITES = @"ListBoxItemsFavorites.txt";
+        public const string FAVORITES_FORM_M = @"FavoritesMen.txt";
+        public const string FAVORITES_FORM_F = @"FavoritesWomen.txt";
+
+        //Za images:
+        public string pathToImagesFolder = Path.Combine(
+                        Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                        "..", "..", "..", "..", "DAL", "LocalFiles", "images");
+
 
         public const string API_PING = "worldcup-vua.nullbit.hr";
         public const string TEAMS_RESULTS_M = "https://worldcup-vua.nullbit.hr/men/teams/results";
@@ -46,6 +56,36 @@ namespace DAL.Model
         public List<TeamLocal> WomenTeamLocal { get; private set; }
         public List<Match> WomenMatches { get; private set; }
         public List<GroupResult> WomenGroupResultLocal { get; private set; }
+
+        //OVO SAM MORAO OVAKO NAPRAVITI JER SAM IMAO PROBLEMA SA DODAVANJEM MYHELPER CLASS LIBA
+        public static ImageList GetImageList()
+        {
+            ImageList imageList = new ImageList();
+            imageList.ImageSize = new Size(50, 50);
+            string profilePicDirPath = Path.Combine(Application.StartupPath, "ProfilePictures");
+
+            if (!Directory.Exists(profilePicDirPath))
+            {
+                Directory.CreateDirectory(profilePicDirPath);
+            }
+            else
+            {
+                // Load all the image files from the "ProfilePictures" subdirectory
+                string[] imageFiles = Directory.GetFiles(profilePicDirPath, "*.png");
+                foreach (string imageFile in imageFiles)
+                {
+                        using (FileStream fs = new FileStream(imageFile, FileMode.Open, FileAccess.Read))
+                        {
+                            Image image = Image.FromStream(fs);
+                            imageList.Images.Add(image);
+                            fs.Close();
+                        }
+                    
+                }
+            }
+
+            return imageList;
+        }
 
         public static bool ServerStatusBy(string url)
         {
@@ -74,7 +114,7 @@ namespace DAL.Model
             Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
             "..", "..", "..", "..", "DAL", "LocalFiles", "women");
 
-        public async Task LoadDataForProcess() 
+        public async Task LoadDataForProcess()
         {
             if (!ServerStatusBy(API_PING))
             {
@@ -86,7 +126,7 @@ namespace DAL.Model
                 var dataRetrievalStrategyLocal1 = factory.CreateLocalDataRetrievalStrategy<TeamResult>(pathToMenResults);
                 var repo1 = new DataRepo<TeamResult>(dataRetrievalStrategyLocal1);
                 var data1 = await repo1.GetAllAsync();
-                MenResults =  data1.ToList();
+                MenResults = data1.ToList();
 
 
                 var dataRetrievalStrategyLocal2 = factory.CreateLocalDataRetrievalStrategy<TeamLocal>(pathToMenTeams);
@@ -119,7 +159,7 @@ namespace DAL.Model
                 MenResults = data1.ToList();
                 MenMatches = data2.ToList();
             }
-            
+
             if (!ServerStatusBy(API_PING))
             {
                 string pathToWomenResults = pathToWomenFolder + "\\results.json";
@@ -166,20 +206,14 @@ namespace DAL.Model
 
         public async Task SaveLocal(Dictionary<string, Control> controlDict)
         {
-            string cbPath = Path.Combine(Application.StartupPath, COMBO_BOXES);
-            string lbPath = Path.Combine(Application.StartupPath, LIST_BOXES);
+            string cbPath = Path.Combine(System.Windows.Forms.Application.StartupPath, COMBO_BOXES);
 
             if (!File.Exists(cbPath))
             {
                 File.Create(cbPath);
             }
-            if (!File.Exists(lbPath))
-            {
-                File.Create(lbPath);
-            }
 
             StreamWriter comboBoxWriter = new StreamWriter(cbPath);
-            StreamWriter listBoxWriter = new StreamWriter(lbPath);
 
             foreach (KeyValuePair<string, Control> kvp in controlDict)
             {
@@ -188,69 +222,81 @@ namespace DAL.Model
                     ComboBox comboBox = (ComboBox)kvp.Value;
                     await comboBoxWriter.WriteAsync($"{kvp.Key}|{comboBox.SelectedIndex.ToString()}{Environment.NewLine}");
                 }
-                else if (kvp.Value is ListBox)
-                {
-                    ListBox listBox = (ListBox)kvp.Value;
-                    foreach (var item in listBox.Items)
-                    {
-                        await listBoxWriter.WriteAsync($"{kvp.Key}|{item.ToString()}{Environment.NewLine}");
-                    }
-                }
             }
             await comboBoxWriter.FlushAsync();
-            await listBoxWriter.FlushAsync();
-
             comboBoxWriter.Close();
-            listBoxWriter.Close();
         }
 
-        public async Task SaveLocalFavorites(Dictionary<string, Control> controlDict)
+        public async Task SaveLocalFavorites(Dictionary<string, Control> controlDict, char gender)
         {
-            string cbPath = Path.Combine(Application.StartupPath, COMBO_BOXES_FAVORITES);
-            string lbPath = Path.Combine(Application.StartupPath, LIST_BOXES_FAVORITES);
-
-            if (!File.Exists(cbPath))
+            string pathToImagesFolder = Path.Combine(Application.StartupPath, "ProfilePictures");
+            if (!Directory.Exists(pathToImagesFolder))
             {
-                File.Create(cbPath);
-            }
-            else if(File.Exists(cbPath))
-            {
-                File.WriteAllText(cbPath, string.Empty);
+                Directory.CreateDirectory(pathToImagesFolder);
             }
 
-            if (!File.Exists(lbPath))
+            string cPath = null;
+            gender.ToString().ToLower();
+            if (gender == 'm')
             {
-                File.Create(lbPath);
+                cPath = Path.Combine(Application.StartupPath, FAVORITES_FORM_M);
             }
-            else if (File.Exists(lbPath))
+            else if (gender == 'f')
             {
-                File.WriteAllText(lbPath, string.Empty);
+                cPath = Path.Combine(Application.StartupPath, FAVORITES_FORM_F);
             }
 
-            StreamWriter comboBoxWriter = new StreamWriter(cbPath);
-            StreamWriter listBoxWriter = new StreamWriter(lbPath);
-
-            foreach (KeyValuePair<string, Control> kvp in controlDict)
+            if (!File.Exists(cPath))
             {
-                if (kvp.Value is ComboBox)
+                using (File.Create(cPath)) { };
+            }
+
+            if (File.Exists(cPath))
+            {
+                // Get the image list
+                ImageList imageList = GetImageList();
+
+                // Write the modified data to the file
+                using (StreamWriter writer = new StreamWriter(cPath))
                 {
-                    ComboBox comboBox = (ComboBox)kvp.Value;
-                    await comboBoxWriter.WriteAsync($"{kvp.Key}|{comboBox.SelectedIndex.ToString()}{Environment.NewLine}");
-                }
-                else if (kvp.Value is ListBox)
-                {
-                    ListBox listBox = (ListBox)kvp.Value;
-                    foreach (var item in listBox.Items)
+                    foreach (KeyValuePair<string, Control> kvp in controlDict)
                     {
-                        await listBoxWriter.WriteAsync($"{kvp.Key}|{item.ToString()}{Environment.NewLine}");
+                        if (kvp.Value is ListView)
+                        {
+                            ListView listView = (ListView)kvp.Value;
+                            foreach (ListViewItem item in listView.Items)
+                            {
+                                string playerName = item.SubItems[0].Text;
+                                string playerShirtNum = item.SubItems[1].Text;
+                                string playerPosition = item.SubItems[2].Text;
+                                string playerCaptain = item.SubItems[3].Text;
+                                int imgIndex = item.ImageIndex;
+
+                                writer.WriteLine($"{kvp.Value.Name}{DELIMITER}{playerName}{DELIMITER}{playerShirtNum}{DELIMITER}{playerPosition}{DELIMITER}{playerCaptain}{DELIMITER}{imgIndex}");
+                            }
+                        }
+                        else if (kvp.Value is ComboBox)
+                        {
+                            ComboBox comboBox = (ComboBox)kvp.Value;
+                            writer.WriteLine($"{kvp.Value.Name}{DELIMITER}{comboBox.SelectedIndex}");
+                        }
                     }
+                    writer.Close();
                 }
             }
-            await comboBoxWriter.FlushAsync();
-            await listBoxWriter.FlushAsync();
+        }
 
-            comboBoxWriter.Close();
-            listBoxWriter.Close();
+
+        public void FileCheck(string filename)
+        {
+            if (!File.Exists(filename))
+            {
+                File.Create(filename);
+            }
+            else if (File.Exists(filename))
+            {
+                File.WriteAllText(filename, string.Empty);
+            }
         }
 
         //Separitati sve za loadanje pojedinih elemenata u zasebne klase koje primaju 
@@ -258,8 +304,8 @@ namespace DAL.Model
 
         public void LoadLocal(Dictionary<string, Control> controlDict)
         {
-            string cbPath = Path.Combine(Application.StartupPath, COMBO_BOXES);
-            string lbPath = Path.Combine(Application.StartupPath, LIST_BOXES);
+            string cbPath = Path.Combine(System.Windows.Forms.Application.StartupPath, COMBO_BOXES);
+            string lbPath = Path.Combine(System.Windows.Forms.Application.StartupPath, LIST_BOXES);
 
             if (!File.Exists(cbPath))
             {
@@ -292,122 +338,111 @@ namespace DAL.Model
                 }
                 comboBoxReader.Close();
             }
-
-            using (StreamReader listBoxReader = new StreamReader(lbPath))
-            {
-                string line;
-                while ((line = listBoxReader.ReadLine()) != null)
-                {
-                    string[] data = line.Split(DELIMITER);
-                    foreach (KeyValuePair<string, Control> kvp in controlDict)
-                    {
-                        if (kvp.Value is ListBox)
-                        {
-                            if (kvp.Value.Name == data[0])
-                            {
-                                StringBuilder sb = new StringBuilder();
-                                sb.Append(data[1]);
-                                sb.Append(" ");
-                                sb.Append(data[2]);
-                                sb.Append(" ");
-                                sb.Append(data[3]);
-                                sb.Append(" ");
-                                sb.Append(data[4]);
-                                string text = sb.ToString();
-                                ListBox listBox = (ListBox)kvp.Value;
-                                listBox.Items.Add(text);
-
-                            }
-                        }
-                    }
-                }
-                listBoxReader.Close();
-            }
         }
 
-        public void LoadLocalFavorites(Dictionary<string, Control> controlDict)
+        public void LoadLocalFavorites(Dictionary<string, Control> controlDict, char gender)
         {
-            string cbPath = Path.Combine(Application.StartupPath, COMBO_BOXES_FAVORITES);
-            string lbPath = Path.Combine(Application.StartupPath, LIST_BOXES_FAVORITES);
+            string pathToImagesFolder = Path.Combine(Application.StartupPath, "ProfilePictures");
+            if (!Directory.Exists(pathToImagesFolder))
+            {
+                Directory.CreateDirectory(pathToImagesFolder);
+            }
 
-            if (!File.Exists(cbPath))
+            string cPath = null;
+            gender.ToString().ToLower();
+            if (gender == 'm')
             {
-                File.Create(cbPath);
+                cPath = Path.Combine(Application.StartupPath, FAVORITES_FORM_M);
             }
-            if (!File.Exists(lbPath))
+            else if (gender == 'f')
             {
-                File.Create(lbPath);
+                cPath = Path.Combine(Application.StartupPath, FAVORITES_FORM_F);
             }
-            else if (File.Exists(lbPath))
+
+            if (!File.Exists(cPath))
             {
-                using (StreamReader listBoxReader = new StreamReader(lbPath))
+                using (File.Create(cPath)) { };
+            }
+
+            if (File.Exists(cPath))
+            {
+                using (StreamReader reader = new StreamReader(cPath))
                 {
+                    ImageList imageList = new ImageList();
+                    imageList.ImageSize = new Size(50, 50);
+
+                    // Vadi iz Profile Foldera
+                    string[] imageFiles = Directory.GetFiles(pathToImagesFolder, "*.png");
+                    foreach (string imageFile in imageFiles)
+                    {
+                        using (FileStream fs = new FileStream(imageFile, FileMode.Open, FileAccess.Read))
+                        {
+                            Bitmap bitmap = new Bitmap(fs);
+                            imageList.Images.Add(bitmap);
+                        }
+                    }
+
                     string line;
-                    while ((line = listBoxReader.ReadLine()) != null)
+                    while ((line = reader.ReadLine()) != null)
                     {
                         string[] data = line.Split(DELIMITER);
+
                         foreach (KeyValuePair<string, Control> kvp in controlDict)
                         {
-                            if (kvp.Value is ListBox)
+                            if (kvp.Value is ListView)
                             {
                                 if (kvp.Value.Name == data[0])
                                 {
-                                    Player p = new Player()
+                                    bool itemExists = false;
+                                    foreach (ListViewItem item in ((ListView)kvp.Value).Items)
                                     {
-                                        Name = data[1],
-                                        ShirtNumber = int.Parse(data[2]),
-                                        Position = (Position)Enum.Parse(typeof(Position), data[3]),
-                                        Captain = bool.Parse(data[4])
+                                        if (item.SubItems[0].Text == data[1])
+                                        {
+                                            itemExists = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!itemExists)
+                                    {
+                                        string playerName = data[1];
+                                        string playerShirtNum = data[2];
+                                        string playerPosition = data[3];
+                                        string playerCaptain = data[4];
+                                        int imgIndex = int.Parse(data[5]);
 
-                                    };
-                                    ListBox listBox = (ListBox)kvp.Value;
-                                    listBox.Items.Add(p);
+                                        string[] allData = { data[1], data[2], data[3], data[4] };
+                                        ListViewItem item = new ListViewItem(allData, imgIndex);
+                                        ListView listView = (ListView)kvp.Value;
+                                        listView.SmallImageList = imageList;
+                                        listView.Items.Add(item);
+                                    }
                                     break;
-
+                                }
+                            }
+                            else if (kvp.Value is ComboBox)
+                            {
+                                if (kvp.Value.Name == data[0])
+                                {
+                                    int selectedInd = int.Parse(data[1]);
+                                    ComboBox comboBox = (ComboBox)kvp.Value;
+                                    comboBox.SelectedIndex = selectedInd;
                                 }
                             }
                         }
                     }
-                    listBoxReader.Close();
+                    reader.Close();
                 }
             }
-
-            using (StreamReader comboBoxReader = new StreamReader(cbPath))
-            {
-                string line;
-                while ((line = comboBoxReader.ReadLine()) != null)
-                {
-                    string[] data = line.Split(DELIMITER);
-                    //MessageBox.Show(data[1]);
-                    foreach (KeyValuePair<string, Control> kvp in controlDict)
-                    {
-                        if (kvp.Value is ComboBox)
-                        {
-                            if (kvp.Value.Name == data[0])
-                            {
-                                int selectedInd = int.Parse(data[1]);
-                                ComboBox comboBox = (ComboBox)kvp.Value;
-                                comboBox.SelectedIndex = selectedInd;
-                            }
-                        }
-                    }
-                }
-                comboBoxReader.Close();
-            }
-
-           
         }
-
-
 
         public SortedDictionary<string, SortedSet<Player>> LoadPlayers(IList<Match> matches)
         {
-
+        
             SortedDictionary<string, SortedSet<Player>> countryPlayers = new SortedDictionary<string, SortedSet<Player>>();
             
               foreach (var item in matches.ToList())
               {
-
+        
                   string countryName = item.HomeTeamStatistics.Country;
                   SortedSet<Player> players;
                   if (!countryPlayers.TryGetValue(countryName, out players))
@@ -415,7 +450,7 @@ namespace DAL.Model
                       players = new SortedSet<Player>();
                       countryPlayers.Add(countryName, players);
                   }
-
+        
                   item.HomeTeamStatistics.StartingEleven
                       .ToList()
                       .ForEach(
@@ -426,9 +461,9 @@ namespace DAL.Model
                               ShirtNumber = c.ShirtNumber,
                               Captain = c.Captain
                           }
-                          )
+                        )
                       );
-
+        
                   item.HomeTeamStatistics.Substitutes
                       .ToList()
                       .ForEach(
@@ -438,11 +473,11 @@ namespace DAL.Model
                                Position = c.Position,
                                ShirtNumber = c.ShirtNumber,
                                Captain = c.Captain
-                           }));
+                           }
+                         )
+                       );
               }
-              
-          
-            return countryPlayers;
-        }
-    }
+                 return countryPlayers;
+             }
+         }
 }

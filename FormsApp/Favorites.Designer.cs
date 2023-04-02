@@ -30,9 +30,11 @@
         {
             this.cbChooseRep = new System.Windows.Forms.ComboBox();
             this.lbChooseRep = new System.Windows.Forms.Label();
-            this.lboxRepAllPlayers = new System.Windows.Forms.ListBox();
-            this.lboxRepFavorites = new System.Windows.Forms.ListBox();
             this.lbFavorites = new System.Windows.Forms.Label();
+            this.lbAllPlayers = new System.Windows.Forms.Label();
+            this.lvAllPlayers = new System.Windows.Forms.ListView();
+            this.lvFavoritePlayers = new System.Windows.Forms.ListView();
+            this.btnRankings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cbChooseRep
@@ -54,48 +56,68 @@
             this.lbChooseRep.TabIndex = 1;
             this.lbChooseRep.Text = "Choose your Representation";
             // 
-            // lboxRepAllPlayers
-            // 
-            this.lboxRepAllPlayers.AllowDrop = true;
-            this.lboxRepAllPlayers.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.lboxRepAllPlayers.FormattingEnabled = true;
-            this.lboxRepAllPlayers.ItemHeight = 20;
-            this.lboxRepAllPlayers.Location = new System.Drawing.Point(11, 107);
-            this.lboxRepAllPlayers.Name = "lboxRepAllPlayers";
-            this.lboxRepAllPlayers.Size = new System.Drawing.Size(331, 484);
-            this.lboxRepAllPlayers.TabIndex = 2;
-            this.lboxRepAllPlayers.SelectedIndexChanged += new System.EventHandler(this.lboxRepAllPlayers_SelectedIndexChanged);
-            // 
-            // lboxRepFavorites
-            // 
-            this.lboxRepFavorites.AllowDrop = true;
-            this.lboxRepFavorites.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lboxRepFavorites.FormattingEnabled = true;
-            this.lboxRepFavorites.ItemHeight = 20;
-            this.lboxRepFavorites.Location = new System.Drawing.Point(370, 107);
-            this.lboxRepFavorites.Name = "lboxRepFavorites";
-            this.lboxRepFavorites.Size = new System.Drawing.Size(861, 484);
-            this.lboxRepFavorites.TabIndex = 3;
-            this.lboxRepFavorites.SelectedIndexChanged += new System.EventHandler(this.lboxRepFavorites_SelectedIndexChanged);
-            this.lboxRepFavorites.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.lboxRepFavorites_Format);
-            // 
             // lbFavorites
             // 
             this.lbFavorites.AutoSize = true;
-            this.lbFavorites.Location = new System.Drawing.Point(370, 84);
+            this.lbFavorites.Location = new System.Drawing.Point(758, 117);
             this.lbFavorites.Name = "lbFavorites";
             this.lbFavorites.Size = new System.Drawing.Size(112, 20);
             this.lbFavorites.TabIndex = 4;
             this.lbFavorites.Text = "Favorite players";
+            // 
+            // lbAllPlayers
+            // 
+            this.lbAllPlayers.AutoSize = true;
+            this.lbAllPlayers.Location = new System.Drawing.Point(223, 117);
+            this.lbAllPlayers.Name = "lbAllPlayers";
+            this.lbAllPlayers.Size = new System.Drawing.Size(78, 20);
+            this.lbAllPlayers.TabIndex = 5;
+            this.lbAllPlayers.Text = "All players";
+            // 
+            // lvAllPlayers
+            // 
+            this.lvAllPlayers.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.lvAllPlayers.Location = new System.Drawing.Point(12, 140);
+            this.lvAllPlayers.Name = "lvAllPlayers";
+            this.lvAllPlayers.Size = new System.Drawing.Size(518, 466);
+            this.lvAllPlayers.TabIndex = 6;
+            this.lvAllPlayers.UseCompatibleStateImageBehavior = false;
+            this.lvAllPlayers.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvAllPlayers_ItemDrag);
+            this.lvAllPlayers.SelectedIndexChanged += new System.EventHandler(this.lvAllPlayers_SelectedIndexChanged);
+            this.lvAllPlayers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvAllPlayers_MouseDown);
+            // 
+            // lvFavoritePlayers
+            // 
+            this.lvFavoritePlayers.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.lvFavoritePlayers.Location = new System.Drawing.Point(554, 140);
+            this.lvFavoritePlayers.Name = "lvFavoritePlayers";
+            this.lvFavoritePlayers.Size = new System.Drawing.Size(518, 235);
+            this.lvFavoritePlayers.TabIndex = 7;
+            this.lvFavoritePlayers.UseCompatibleStateImageBehavior = false;
+            this.lvFavoritePlayers.SelectedIndexChanged += new System.EventHandler(this.lvFavoritePlayers_SelectedIndexChanged);
+            this.lvFavoritePlayers.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvFavoritePlayers_DragDrop);
+            this.lvFavoritePlayers.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvFavoritePlayers_DragEnter);
+            // 
+            // btnRankings
+            // 
+            this.btnRankings.Location = new System.Drawing.Point(554, 403);
+            this.btnRankings.Name = "btnRankings";
+            this.btnRankings.Size = new System.Drawing.Size(146, 64);
+            this.btnRankings.TabIndex = 8;
+            this.btnRankings.Text = "See Rankings";
+            this.btnRankings.UseVisualStyleBackColor = true;
+            this.btnRankings.Click += new System.EventHandler(this.btnRankings_Click);
             // 
             // pnlRepPlayers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1409, 618);
+            this.Controls.Add(this.btnRankings);
+            this.Controls.Add(this.lvFavoritePlayers);
+            this.Controls.Add(this.lvAllPlayers);
+            this.Controls.Add(this.lbAllPlayers);
             this.Controls.Add(this.lbFavorites);
-            this.Controls.Add(this.lboxRepFavorites);
-            this.Controls.Add(this.lboxRepAllPlayers);
             this.Controls.Add(this.lbChooseRep);
             this.Controls.Add(this.cbChooseRep);
             this.Name = "pnlRepPlayers";
@@ -111,8 +133,10 @@
 
         private ComboBox cbChooseRep;
         private Label lbChooseRep;
-        private ListBox lboxRepAllPlayers;
-        private ListBox lboxRepFavorites;
         private Label lbFavorites;
+        private Label lbAllPlayers;
+        private ListView lvAllPlayers;
+        private ListView lvFavoritePlayers;
+        private Button btnRankings;
     }
 }

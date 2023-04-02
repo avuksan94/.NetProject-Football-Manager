@@ -99,7 +99,7 @@ namespace FormsApp
             this.CenterToScreen();
             dataManager.LoadLocal(controlsWsf);
         }
-
+        
         private void cbChooseLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (cbChooseLanguage.SelectedIndex)

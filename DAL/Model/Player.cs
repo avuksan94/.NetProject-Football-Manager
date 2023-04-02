@@ -40,5 +40,5 @@ namespace DAL.Model
                                              $"{ShirtNumber}{DELIMITER.ToString()}" +
                                              $"{Position.ToString()}{DELIMITER.ToString()}" +
                                              $"{Captain}";
-    }
+    }   
 }

@@ -4,6 +4,9 @@
     <Compile Update="Favorites.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Rankings.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="WelcomeForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,0 +1,25 @@
+cbChooseRep|1
+lvAllPlayers|Aivi LUIK|3|Midfield|False|0
+lvAllPlayers|Alanna KENNEDY|14|Defender|False|4
+lvAllPlayers|Amy HARRISON|22|Midfield|False|5
+lvAllPlayers|Caitlin FOORD|9|Forward|False|6
+lvAllPlayers|Chloe LOGARZO|6|Midfield|False|7
+lvAllPlayers|Clare POLKINGHORNE|4|Defender|False|0
+lvAllPlayers|Elise KELLOND-KNIGHT|8|Midfield|False|0
+lvAllPlayers|Ellie CARPENTER|21|Defender|False|0
+lvAllPlayers|Emily GIELNIK|15|Forward|False|0
+lvAllPlayers|Emily VAN EGMOND|10|Midfield|False|0
+lvAllPlayers|Gema SIMON|2|Defender|False|0
+lvAllPlayers|Hayley RASO|16|Forward|False|0
+lvAllPlayers|Karly ROESTBAKKEN|5|Defender|False|0
+lvAllPlayers|Katrina GORRY|19|Midfield|False|0
+lvAllPlayers|Lisa DE VANNA|11|Forward|False|0
+lvAllPlayers|Lydia WILLIAMS|1|Goalie|False|0
+lvAllPlayers|Mackenzie ARNOLD|18|Goalie|False|0
+lvAllPlayers|Mary FOWLER|17|Forward|False|0
+lvAllPlayers|Sam KERR|20|Forward|True|0
+lvAllPlayers|Steph CATLEY|7|Defender|False|0
+lvAllPlayers|Tameka YALLOP|13|Midfield|False|0
+lvAllPlayers|Teagan MICAH|12|Goalie|False|0
+lvAllPlayers|Teigen ALLEN|23|Defender|False|0
+lvFavoritePlayers|Alanna KENNEDY|14|Defender|False|0

@@ -1,0 +1,24 @@
+cbChooseRep|6
+lvAllPlayers|Andrej KRAMARIC|9|Forward|False|4
+lvAllPlayers|Ante REBIC|18|Forward|False|3
+lvAllPlayers|Danijel SUBASIC|23|Goalie|False|3
+lvAllPlayers|Dejan LOVREN|6|Defender|False|3
+lvAllPlayers|Domagoj VIDA|21|Defender|False|5
+lvAllPlayers|Dominik LIVAKOVIC|1|Goalie|False|3
+lvAllPlayers|Duje CALETA-CAR|15|Defender|False|3
+lvAllPlayers|Filip BRADARIC|14|Midfield|False|3
+lvAllPlayers|Ivan PERISIC|4|Forward|False|3
+lvAllPlayers|Ivan RAKITIC|7|Midfield|False|3
+lvAllPlayers|Ivan STRINIC|3|Defender|False|3
+lvAllPlayers|Josip PIVARIC|22|Defender|False|3
+lvAllPlayers|Lovre KALINIC|12|Goalie|False|3
+lvAllPlayers|Luka MODRIC|10|Midfield|True|3
+lvAllPlayers|Marcelo BROZOVIC|11|Midfield|False|3
+lvAllPlayers|Mario MANDZUKIC|17|Forward|False|6
+lvAllPlayers|Marko PJACA|20|Forward|False|3
+lvAllPlayers|Mateo KOVACIC|8|Midfield|False|3
+lvAllPlayers|Milan BADELJ|19|Midfield|False|3
+lvAllPlayers|Nikola KALINIC|16|Forward|False|3
+lvAllPlayers|Sime VRSALJKO|2|Defender|False|3
+lvAllPlayers|Tin JEDVAJ|13|Defender|False|3
+lvAllPlayers|Vedran CORLUKA|5|Defender|False|7

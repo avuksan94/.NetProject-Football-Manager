@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -93,6 +94,14 @@
     <None Include="LocalFiles\women\results.json" />
     <None Include="LocalFiles\women\teams.json" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LocalFiles\images\FemaleFBPlayer.png" />
+    <Content Include="LocalFiles\images\FemaleIcon.png" />
+    <Content Include="LocalFiles\images\footbalPlayerMale.png" />
+    <Content Include="LocalFiles\images\footbalPlayerMale02.png" />
+    <Content Include="LocalFiles\images\MaleFBPlayer.png" />
+    <Content Include="LocalFiles\images\MaleIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
