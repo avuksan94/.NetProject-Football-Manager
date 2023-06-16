@@ -1,0 +1,71 @@
+﻿<Window x:Class="FootballManagerWPFApp.View.RepInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="RepInfo" 
+        Height="500"
+        Width="1000"
+        MinWidth="428"
+        MinHeight="200"
+        WindowStyle="none"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="RepInfoWindow_MouseDown"
+        Background="#2C3E50"
+        BorderBrush="#34495E">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard Duration="0:0:2" Storyboard.TargetProperty="Opacity">
+                    <DoubleAnimation From="0" To="1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid x:Name="RepInfoWindow" MouseDown="RepInfoWindow_MouseDown">
+        <Label Grid.Column="0" 
+               Grid.Row="0"
+               Name="lbCountry"
+               Content="REP INFO" 
+               HorizontalAlignment="Center" 
+               Margin="0,0,0,0" 
+               VerticalAlignment="Top"
+               FontSize="24"
+               Foreground="White"/>
+        <ListView Name="RepresentationGrid" 
+                  Margin="40,40,40,380" 
+                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                
+                <GridView x:Name="gridViewDisplayRepInfo">
+                    <GridViewColumn Header="Country" DisplayMemberBinding="{Binding Country}" Width="100"/>
+                    <GridViewColumn Header="FifaCode" DisplayMemberBinding="{Binding FifaCode}" Width="100"/>
+                    <GridViewColumn Header="Games Played" DisplayMemberBinding="{Binding GamesPlayed}" Width="100"/>
+                    <GridViewColumn Header="Wins" DisplayMemberBinding="{Binding Wins}" Width="100"/>
+                    <GridViewColumn Header="Losses" DisplayMemberBinding="{Binding Losses}" Width="100"/>
+                    <GridViewColumn Header="Draws" DisplayMemberBinding="{Binding Draws}" Width="100"/>
+                    <GridViewColumn Header="Goals For" DisplayMemberBinding="{Binding GoalsFor}" Width="100"/>
+                    <GridViewColumn Header="Goals Against" DisplayMemberBinding="{Binding GoalsAgainst}" Width="100"/>
+                    <GridViewColumn Header="Goal Differential" DisplayMemberBinding="{Binding GoalDifferential}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button x:Name="btnExit"
+                Content="Exit" 
+                HorizontalAlignment="Stretch" 
+                Margin="0,0,0,0" 
+                VerticalAlignment="Stretch"
+                Height="50"
+                Width="120"
+                FontSize="24" Click="btnExit_Click"/>
+    </Grid>
+</Window>

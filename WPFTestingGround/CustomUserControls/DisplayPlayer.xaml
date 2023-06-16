@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="FootballManagerWPFApp.CustomUserControls.DisplayPlayer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FootballManagerWPFApp.CustomUserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="120">
+    <Grid>
+        <Grid x:Name="PlayerCont" MouseDown="PlayerCont_MouseDown">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="71*" />
+                <RowDefinition Height="29*" />
+            </Grid.RowDefinitions>
+
+            <Ellipse Name="elPlayerIcon"
+                 Width="50"
+                 Height="50"
+                 Stroke="White"
+                 StrokeThickness="2"
+                 HorizontalAlignment="stretch"
+                 VerticalAlignment="Stretch"/>
+
+            <Label Name="lbDisplayShirtNumber"
+               Content="#SN" 
+                   Grid.Row="0"
+               HorizontalAlignment="Left" 
+               Margin="0,0,0,0" 
+               VerticalAlignment="Top"
+               FontSize="12"
+               FontWeight="Heavy"
+               Foreground="Black" Height="26" Width="32"/>
+
+            <Label Name="lbDisplayPlayerName"
+               Content="#Perislav perich"
+               Grid.Row="1"
+               HorizontalAlignment="Stretch" 
+               VerticalAlignment="Center"
+               FontSize="10"
+               FontWeight="Heavy"
+               Foreground="Black" Height="26" Width="100"/>
+
+        </Grid>
+    </Grid>
+</UserControl>

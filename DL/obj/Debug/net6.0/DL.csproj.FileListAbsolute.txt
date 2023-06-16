@@ -1,0 +1,12 @@
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DL\bin\Debug\net6.0\DL.deps.json
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DL\bin\Debug\net6.0\DL.dll
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DL\bin\Debug\net6.0\DL.pdb
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DL\obj\Debug\net6.0\DL.csproj.AssemblyReference.cache
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DL\obj\Debug\net6.0\DL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DL\obj\Debug\net6.0\DL.AssemblyInfoInputs.cache
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DL\obj\Debug\net6.0\DL.AssemblyInfo.cs
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DL\obj\Debug\net6.0\DL.csproj.CoreCompileInputs.cache
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DL\obj\Debug\net6.0\DL.dll
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DL\obj\Debug\net6.0\refint\DL.dll
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DL\obj\Debug\net6.0\DL.pdb
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\DL\obj\Debug\net6.0\ref\DL.dll

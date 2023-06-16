@@ -1,0 +1,3 @@
+cbChooseLanguage|0
+cbChooseMF|0
+cbChooseResolution|0

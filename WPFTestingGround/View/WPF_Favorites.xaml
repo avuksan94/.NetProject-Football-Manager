@@ -1,0 +1,145 @@
+﻿<Window x:Class="FootballManagerWPFApp.View.WPF_Favorites"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FootballManagerWPFApp.View" xmlns:customusercontrols="clr-namespace:FootballManagerWPFApp.CustomUserControls"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="WPF_Favorites"
+        Width="1600"
+        Height="800"
+        MinWidth="428"
+        MinHeight="200"
+        WindowStyle="none"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="WindowFavs_MouseDown"
+        Background="#2C3E50"
+        BorderBrush="#34495E">
+    <Grid x:Name="WindowFavs" MouseDown="WindowFavs_MouseDown">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29*"></RowDefinition>
+            <RowDefinition Height="171*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1" Name="gridSoccerField">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+         
+        </Grid>
+
+        <ComboBox MaxDropDownHeight="200"
+                  Grid.Column="0" 
+                  HorizontalAlignment="Left" 
+                  Name="cbChooseRep"
+                  Text = "Choose representation"
+                  Margin="40,40,0,0" 
+                  Grid.Row="0" 
+                  VerticalAlignment="Stretch" 
+                  Width="170"
+                  Height="30"
+                  FontSize="15"
+                  DisplayMemberPath="Country" 
+                  SelectionChanged="cbChooseRep_SelectionChanged">
+        </ComboBox>
+
+        <Label Grid.Column="0" 
+               Grid.Row="0"
+               Name="lbDisplayScore"
+               Content="Selected Match Score:" 
+               HorizontalAlignment="Center" 
+               Margin="0,0,0,0" 
+               VerticalAlignment="Center"
+               FontSize="24"
+               Foreground="White"/>
+
+        <Label 
+               Grid.Row="0"
+               Name="lbScore"
+               Content="" 
+               HorizontalAlignment="Center" 
+               Margin="0,74,0,0" 
+               VerticalAlignment="Top"
+               FontSize="24"
+               Foreground="White"/>
+
+        <Button x:Name="btnClose"
+                Grid.Column="1" 
+                Grid.Row="0"
+                Content="Close" 
+                HorizontalAlignment="Right" 
+                Margin="0,0,20,0" 
+                VerticalAlignment="Stretch"
+                Height="50"
+                Width="120"
+                FontSize="24" Click="btnClose_Click"/>
+
+        <Button x:Name="btnSettings"
+                Grid.Column="1" 
+                Grid.Row="0"
+                Content="Settings" 
+                HorizontalAlignment="Left" 
+                Margin="0,0,20,0" 
+                VerticalAlignment="Stretch"
+                Height="50"
+                Width="120"
+                FontSize="24" Click="btnSettings_Click"/>
+
+        <ListView Name="RepresentationGrid" 
+                  Grid.Row="1" 
+                  Margin="40,40,140,40" 
+                  SelectionChanged="RepresentationGrid_SelectionChanged"
+                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <ListView.View>
+                <GridView x:Name="gridViewAllPlayers">
+                    <GridViewColumn Header="Code Home" DisplayMemberBinding="{Binding HomeTeam.Code}" Width="auto"/>
+                    <GridViewColumn Header="Code Away" DisplayMemberBinding="{Binding AwayTeam.Code}" Width="auto"/>
+                    <GridViewColumn Header="Home Team" DisplayMemberBinding="{Binding HomeTeamCountry}" Width="auto"/>
+                    <GridViewColumn Header="Away team" DisplayMemberBinding="{Binding AwayTeamCountry}" Width="auto"/>
+                    <GridViewColumn Header="Display" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Display Info"
+                                        Command="{Binding DataContext.VMMatch.OpenRepInfoCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=CustomResults}" >
+                                </Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <xctk:BusyIndicator 
+            BusyContent="Updating content..."
+            Name ="biLoadingFavs">
+        </xctk:BusyIndicator>
+        
+    </Grid>
+    
+</Window>

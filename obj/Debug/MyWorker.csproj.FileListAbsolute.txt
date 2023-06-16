@@ -1,0 +1,2 @@
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\obj\Debug\MyWorker.csproj.AssemblyReference.cache
+C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\obj\Debug\MyWorker.csproj.CoreCompileInputs.cache

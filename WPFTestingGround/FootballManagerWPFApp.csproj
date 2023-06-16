@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj" />
+    <ProjectReference Include="..\DL\DL.csproj" />
+    <ProjectReference Include="..\FootballManagerFormsApp\FootballManagerFormsApp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\en_Favorites_Local.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en_Favorites_Local.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\en_MW_Local.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en_MW_Local.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\en_PlayerInfo_Local.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en_PlayerInfo_Local.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\en_RepInfo_Local.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en_RepInfo_Local.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\hrv_Favorites_Local.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>hrv_Favorites_Local.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\hrv_PlayerInfo_Local.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>hrv_PlayerInfo_Local.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\hrv_RepInfo_Local.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>hrv_RepInfo_Local.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\en_Favorites_Local.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_Favorites_Local.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\en_MW_Local.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_MW_Local.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\en_PlayerInfo_Local.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_PlayerInfo_Local.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\en_RepInfo_Local.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_RepInfo_Local.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\hrv_Favorites_Local.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>hrv_Favorites_Local.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\hrv_PlayerInfo_Local.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>hrv_PlayerInfo_Local.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\hrv_RepInfo_Local.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>hrv_RepInfo_Local.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>

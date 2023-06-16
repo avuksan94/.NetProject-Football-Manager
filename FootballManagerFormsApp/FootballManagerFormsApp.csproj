@@ -1,0 +1,107 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj" />
+    <ProjectReference Include="..\ClassLibrary1\MyWorker.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="en_DialogFormLocal.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en_DialogFormLocal.resx</DependentUpon>
+    </Compile>
+    <Compile Update="en_FavoritesLocal.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en_FavoritesLocal.resx</DependentUpon>
+    </Compile>
+    <Compile Update="en_RankingsLocal.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en_RankingsLocal.resx</DependentUpon>
+    </Compile>
+    <Compile Update="en_SettingsLocal.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en_SettingsLocal.resx</DependentUpon>
+    </Compile>
+    <Compile Update="en_WelcomeScreenLocal.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en_WelcomeScreenLocal.resx</DependentUpon>
+    </Compile>
+    <Compile Update="hrv_FavoritesLocal.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>hrv_FavoritesLocal.resx</DependentUpon>
+    </Compile>
+    <Compile Update="hrv_RankingsLocal.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>hrv_RankingsLocal.resx</DependentUpon>
+    </Compile>
+    <Compile Update="hrv_SettingsLocal.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>hrv_SettingsLocal.resx</DependentUpon>
+    </Compile>
+    <Compile Update="hrv_WelcomeScreenLocal.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>hrv_WelcomeScreenLocal.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="en_DialogFormLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_DialogFormLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="en_FavoritesLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_FavoritesLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="en_RankingsLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_RankingsLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="en_SettingsLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_SettingsLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="en_WelcomeScreenLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en_WelcomeScreenLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="hrv_FavoritesLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>hrv_FavoritesLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="hrv_RankingsLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>hrv_RankingsLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="hrv_SettingsLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>hrv_SettingsLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="hrv_WelcomeScreenLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>hrv_WelcomeScreenLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
