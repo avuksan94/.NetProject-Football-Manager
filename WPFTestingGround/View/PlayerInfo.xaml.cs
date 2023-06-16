@@ -196,10 +196,10 @@ namespace FootballManagerWPFApp.View
 
         private string GetFilePath(string path)
         {
-            string assemblyPath = Assembly.GetExecutingAssembly().Location;
-            string solutionDirectory = assemblyPath.Substring(0, assemblyPath.IndexOf("OOPDotNetProjAV\\") + "OOPDotNetProjAV\\".Length);
-            string formsApp = System.IO.Path.Combine(solutionDirectory, "FootballManagerFormsApp", "bin", "Debug", "net6.0-windows", path);
-            return formsApp;
+            string currentProjectDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            DirectoryInfo solutionDirectory = Directory.GetParent(currentProjectDirectory).Parent.Parent.Parent.Parent;
+            string otherProjectDirectory = System.IO.Path.Combine(solutionDirectory.FullName, "FootballManagerFormsApp", "bin", "Debug", "net6.0-windows", path);
+            return otherProjectDirectory;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -294,18 +294,18 @@ namespace FootballManagerWPFApp.View
 
         private string GetFolder(string path)
         {
-            string assemblyPath = Assembly.GetExecutingAssembly().Location;
-            string solutionDirectory = assemblyPath.Substring(0, assemblyPath.IndexOf("OOPDotNetProjAV\\") + "OOPDotNetProjAV\\".Length);
-            string formsApp = System.IO.Path.Combine(solutionDirectory, "DL", "LocalFiles", path);
-            return formsApp;
+            string currentProjectDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            DirectoryInfo solutionDirectory = Directory.GetParent(currentProjectDirectory).Parent.Parent.Parent.Parent;
+            string targetDirectory = System.IO.Path.Combine(solutionDirectory.FullName, "DL", "LocalFiles", path);
+            return targetDirectory;
         }
 
         private string GetProfileFolder(string path)
         {
-            string assemblyPath = Assembly.GetExecutingAssembly().Location;
-            string solutionDirectory = assemblyPath.Substring(0, assemblyPath.IndexOf("OOPDotNetProjAV\\") + "OOPDotNetProjAV\\".Length);
-            string formsApp = System.IO.Path.Combine(solutionDirectory, "FootballManagerFormsApp", "bin", "Debug", "net6.0-windows", path);
-            return formsApp;
+            string currentProjectDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            DirectoryInfo solutionDirectory = Directory.GetParent(currentProjectDirectory).Parent.Parent.Parent.Parent;
+            string targetDirectory = System.IO.Path.Combine(solutionDirectory.FullName, "FootballManagerFormsApp", "bin", "Debug", "net6.0-windows", path);
+            return targetDirectory;
         }
     }
 }

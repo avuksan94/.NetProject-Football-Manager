@@ -32,7 +32,7 @@ namespace WPFTestingGround
     public partial class MainWindow : Window
     {
         public const char DELIMITER = '|';
-        public string? cbPath, resPath,langPath, selectedMFPath;
+        public string? cbPath, resPath,langPath, selectedMFPath, selectedRepPath;
         public string? selectedResolution;
         public string? message;
         public int? selectedMF;
@@ -50,6 +50,7 @@ namespace WPFTestingGround
             cbPath = GetFilePath(DL.Constants.COMBO_BOXES);
             resPath = GetFilePath(DL.Constants.RESOLUTION_FILE);
             selectedMFPath = GetFilePath(DL.Constants.SELECTED_MF);
+            selectedRepPath = GetFilePath(DL.Constants.SELECTED_REPRESENTATION);
             CheckIfExists();
             LoadWindowControls();
             LoadLocal(controlsWelcomeWindow);
@@ -137,10 +138,10 @@ namespace WPFTestingGround
 
         private string GetFilePath(string path)
         {
-            string assemblyPath = Assembly.GetExecutingAssembly().Location;
-            string solutionDirectory = assemblyPath.Substring(0, assemblyPath.IndexOf("OOPDotNetProjAV\\") + "OOPDotNetProjAV\\".Length);
-            string formsApp = System.IO.Path.Combine(solutionDirectory, "FootballManagerFormsApp", "bin", "Debug", "net6.0-windows", path);
-            return formsApp;
+            string currentProjectDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            DirectoryInfo solutionDirectory = Directory.GetParent(currentProjectDirectory).Parent.Parent.Parent.Parent;
+            string otherProjectDirectory = System.IO.Path.Combine(solutionDirectory.FullName, "FootballManagerFormsApp", "bin", "Debug", "net6.0-windows", path);
+            return otherProjectDirectory;
         }
 
         public void LoadLocal(Dictionary<string, Control> controlDict)
@@ -233,6 +234,10 @@ namespace WPFTestingGround
             if (!File.Exists(selectedMFPath))
             {
                 File.Create(selectedMFPath).Close();
+            }
+            if (!File.Exists(selectedRepPath))
+            {
+                File.Create(selectedRepPath).Close();
             }
         }
 

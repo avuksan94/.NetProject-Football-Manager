@@ -112,11 +112,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\Testing\\Testing.csproj",
+      "projectUniqueName": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\Testing\\Testing.csproj",
       "projectName": "Testing",
-      "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\Testing\\Testing.csproj",
+      "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\Testing\\Testing.csproj",
       "packagesPath": "C:\\Users\\antev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\Testing\\obj\\",
+      "outputPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\Testing\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\antev\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -133,11 +133,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\BL\\BL.csproj": {
-              "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\BL\\BL.csproj"
+            "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\BL\\BL.csproj": {
+              "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\BL\\BL.csproj"
             },
-            "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj": {
-              "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj"
+            "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj": {
+              "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj"
             }
           }
         }
@@ -167,7 +167,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

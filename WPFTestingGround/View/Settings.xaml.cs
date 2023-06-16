@@ -86,10 +86,10 @@ namespace FootballManagerWPFApp.View
         //ZA LOADANJE I SEJVANJE PODATAKA(Mislio sam ovo sve raditi u Data servicu ali postoji problem sa Controls(WinForms vs WFP))
         private string GetFilePath(string path)
         {
-            string assemblyPath = Assembly.GetExecutingAssembly().Location;
-            string solutionDirectory = assemblyPath.Substring(0, assemblyPath.IndexOf("OOPDotNetProjAV\\") + "OOPDotNetProjAV\\".Length);
-            string formsApp = System.IO.Path.Combine(solutionDirectory, "FootballManagerFormsApp", "bin", "Debug", "net6.0-windows", path);
-            return formsApp;
+            string currentProjectDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            DirectoryInfo solutionDirectory = Directory.GetParent(currentProjectDirectory).Parent.Parent.Parent.Parent;
+            string otherProjectDirectory = System.IO.Path.Combine(solutionDirectory.FullName, "FootballManagerFormsApp", "bin", "Debug", "net6.0-windows", path);
+            return otherProjectDirectory;
         }
 
         public void LoadLocal(Dictionary<string, Control> controlDict)

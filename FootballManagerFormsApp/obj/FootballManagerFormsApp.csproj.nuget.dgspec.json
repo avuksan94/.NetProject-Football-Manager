@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj": {}
+    "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\BL\\BL.csproj": {
+    "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\BL\\BL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\BL\\BL.csproj",
+        "projectUniqueName": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\BL\\BL.csproj",
         "projectName": "BL",
-        "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\BL\\BL.csproj",
+        "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\BL\\BL.csproj",
         "packagesPath": "C:\\Users\\antev\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\BL\\obj\\",
+        "outputPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\BL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\antev\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\ClassLibrary1\\MyWorker.csproj": {
-                "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\ClassLibrary1\\MyWorker.csproj"
+              "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\ClassLibrary1\\MyWorker.csproj": {
+                "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\ClassLibrary1\\MyWorker.csproj"
               },
-              "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj": {
-                "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj"
+              "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj": {
+                "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj"
               }
             }
           }
@@ -62,33 +62,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\ClassLibrary1\\MyWorker.csproj": {
+    "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\ClassLibrary1\\MyWorker.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\ClassLibrary1\\MyWorker.csproj",
+        "projectUniqueName": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\ClassLibrary1\\MyWorker.csproj",
         "projectName": "MyWorker",
-        "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\ClassLibrary1\\MyWorker.csproj",
+        "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\ClassLibrary1\\MyWorker.csproj",
         "frameworks": {
-          "net481": {
+          "net48": {
             "projectReferences": {}
           }
         }
       },
       "frameworks": {
-        "net481": {}
+        "net48": {}
       }
     },
-    "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj": {
+    "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj",
+        "projectUniqueName": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj",
         "projectName": "DL",
-        "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj",
+        "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj",
         "packagesPath": "C:\\Users\\antev\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\obj\\",
+        "outputPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\antev\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -138,18 +138,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj": {
+    "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj",
+        "projectUniqueName": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj",
         "projectName": "FootballManagerFormsApp",
-        "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj",
+        "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj",
         "packagesPath": "C:\\Users\\antev\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\FootballManagerFormsApp\\obj\\",
+        "outputPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\FootballManagerFormsApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\antev\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -166,11 +166,11 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\BL\\BL.csproj": {
-                "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\BL\\BL.csproj"
+              "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\BL\\BL.csproj": {
+                "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\BL\\BL.csproj"
               },
-              "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\ClassLibrary1\\MyWorker.csproj": {
-                "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\ClassLibrary1\\MyWorker.csproj"
+              "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\ClassLibrary1\\MyWorker.csproj": {
+                "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\ClassLibrary1\\MyWorker.csproj"
               }
             }
           }
@@ -209,7 +209,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

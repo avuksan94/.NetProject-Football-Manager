@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj": {}
+    "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj": {
+    "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj",
+        "projectUniqueName": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj",
         "projectName": "DL",
-        "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj",
+        "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj",
         "packagesPath": "C:\\Users\\antev\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\obj\\",
+        "outputPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\antev\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -242,11 +242,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\WPFTestingGround\\FootballManagerWPFApp.csproj",
+      "projectUniqueName": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\WPFTestingGround\\FootballManagerWPFApp.csproj",
       "projectName": "FootballManagerWPFApp",
-      "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\WPFTestingGround\\FootballManagerWPFApp.csproj",
+      "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\WPFTestingGround\\FootballManagerWPFApp.csproj",
       "packagesPath": "C:\\Users\\antev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\WPFTestingGround\\obj\\",
+      "outputPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\WPFTestingGround\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\antev\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -263,14 +263,14 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\BL\\BL.csproj": {
-              "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\BL\\BL.csproj"
+            "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\BL\\BL.csproj": {
+              "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\BL\\BL.csproj"
             },
-            "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj": {
-              "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\DL\\DL.csproj"
+            "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj": {
+              "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\DL\\DL.csproj"
             },
-            "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj": {
-              "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj"
+            "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj": {
+              "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj"
             }
           }
         }
@@ -309,7 +309,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

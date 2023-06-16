@@ -113,11 +113,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj",
+      "projectUniqueName": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj",
       "projectName": "FootballManagerFormsApp",
-      "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj",
+      "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj",
       "packagesPath": "C:\\Users\\antev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\FootballManagerFormsApp\\obj\\",
+      "outputPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\FootballManagerFormsApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\antev\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -134,11 +134,11 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\BL\\BL.csproj": {
-              "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\BL\\BL.csproj"
+            "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\BL\\BL.csproj": {
+              "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\BL\\BL.csproj"
             },
-            "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\ClassLibrary1\\MyWorker.csproj": {
-              "projectPath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\ClassLibrary1\\MyWorker.csproj"
+            "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\ClassLibrary1\\MyWorker.csproj": {
+              "projectPath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\ClassLibrary1\\MyWorker.csproj"
             }
           }
         }
@@ -177,7 +177,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

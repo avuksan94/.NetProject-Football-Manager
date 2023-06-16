@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wug4kcpeC4LkxpWarGHw4LFLi/llyE+f9X6k9MuYSHUKCtlH1N6+azxtL+HkpQtKHuuaq6XaT/rQEQ7W627mkQ==",
+  "dgSpecHash": "Zeon074KmvP8zowpPQbhGuSFsMKIb1ryktlbXJL/OQFQVUuC85aXnizXDMNzriyxxjiJ2fZQq3r/BV3NEw2agg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\antev\\source\\repos\\OOPdotNet\\OOPDotNetProjAV\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj",
+  "projectFilePath": "C:\\Users\\antev\\Source\\Repos\\dotNetProjekt\\FootballManagerFormsApp\\FootballManagerFormsApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\antev\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],

@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\WPFTestingGround\obj\Debug\net6.0-windows\
+C:\Users\antev\Source\Repos\dotNetProjekt\WPFTestingGround\obj\Debug\net6.0-windows\
 FootballManagerWPFApp
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\antev\source\repos\OOPdotNet\OOPDotNetProjAV\WPFTestingGround\App.xaml
+C:\Users\antev\Source\Repos\dotNetProjekt\WPFTestingGround\App.xaml
 61503692009
 
 30-1189056409
-212-1629047334
+2121455327911
 CustomUserControls\DisplayPlayer.xaml;MainWindow.xaml;View\PlayerInfo.xaml;View\RepInfo.xaml;View\Settings.xaml;View\WPF_Favorites.xaml;
 
 False
